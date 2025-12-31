@@ -1,0 +1,471 @@
+/*
+Theme Name: Elysia_first_web
+Theme URI: 
+Author: 
+Author URI: 
+Description: A custom WordPress theme for Elysia_first_web.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: elysia_first_web
+Tags: 
+*/
+
+/* ==========================================================================
+   1. CSS Variables & Custom Properties
+   ========================================================================== */
+:root {
+    /* WordPress Presets - Based on common defaults and existing theme patterns */
+    --wp--preset--color--black: #000000;
+    --wp--preset--color--cyan-bluish-gray: #abb8c3;
+    --wp--preset--color--white: #ffffff;
+    --wp--preset--color--pale-pink: #f78da7;
+    --wp--preset--color--vivid-red: #cf2e2e;
+    --wp--preset--color--luminous-vivid-orange: #ff6900;
+    --wp--preset--color--luminous-vivid-amber: #fcb900;
+    --wp--preset--color--light-green-cyan: #7bdcb5;
+    --wp--preset--color--vivid-green-cyan: #00d084;
+
+    /* Theme Specific Colors */
+    --elysia-primary-color: #0073aa;
+    --elysia-secondary-color: #23282d;
+    --elysia-text-color: #333333;
+    --elysia-background-color: #ffffff;
+
+    --e-global-color-blocksy_palette_1: var(--wp--preset--color--palette-color-1);
+    --e-global-color-blocksy_palette_2: var(--wp--preset--color--palette-color-2);
+    --e-global-color-blocksy_palette_3: var(--wp--preset--color--palette-color-3);
+    --e-global-color-blocksy_palette_5: var(--wp--preset--color--palette-color-5);
+    --e-global-color-blocksy_palette_8: var(--wp--preset--color--palette-color-8);
+
+    /* Typography */
+    --elysia-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --elysia-font-family-heading: inherit;
+    --elysia-line-height-base: 1.5;
+    --elysia-line-height-heading: 1.2;
+
+    /* Spacing */
+    --elysia-spacing-unit: 1rem;
+    --elysia-container-width: 1200px;
+}
+
+/* ==========================================================================
+   2. Reset & Normalize
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--elysia-font-family-base);
+    font-size: 1rem;
+    line-height: var(--elysia-line-height-base);
+    color: var(--elysia-text-color);
+    background-color: var(--elysia-background-color);
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--elysia-font-family-heading);
+    line-height: var(--elysia-line-height-heading);
+    margin-top: 0;
+    margin-bottom: var(--elysia-spacing-unit);
+    color: var(--elysia-secondary-color);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--elysia-spacing-unit);
+}
+
+a {
+    color: var(--elysia-primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+    color: var(--elysia-secondary-color);
+    text-decoration: underline;
+}
+
+img {
+    border-style: none;
+    height: auto;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   4. Layout & Responsive
+   ========================================================================== */
+.elysia-container {
+    width: 100%;
+    max-width: var(--elysia-container-width);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--elysia-spacing-unit);
+    padding-left: var(--elysia-spacing-unit);
+}
+
+/* ==========================================================================
+   5. Media Queries
+   ========================================================================== */
+/* Mobile Devices */
+@media (max-width: 576px) {
+    :root {
+        --elysia-spacing-unit: 0.875rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+    /* Tablet specific styles */
+}
+
+/* Desktops */
+@media (min-width: 992px) {
+    /* Desktop specific styles */
+}
+
+/* Large Desktops */
+@media (min-width: 1200px) {
+    /* Large desktop specific styles */
+}
+
+/* ==========================================================================
+   6. WordPress Accessibility & Alignments
+   ========================================================================== */
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* ==========================================================================
+   7. Electric & Energy Archive – Layout Overrides
+   ========================================================================== */
+/* 产品卡片整体样式（来自 swforming Electric & Energy 页面） */
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product {
+    text-align: center;
+    --button-align-display: flex;
+    --button-align-direction: column;
+    --button-align-justify: space-between;
+    padding: 0 0 25px 0;
+}
+
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+}
+
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product .woocommerce-loop-product__title,
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product .woocommerce-loop-category__title {
+    font-size: 22px;
+}
+
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product .button {
+    text-transform: uppercase;
+}
+
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product:hover {
+    box-shadow: 0 0 10px 0 rgba(209.25, 209.25, 209.25, 0.5);
+}
+
+.elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products li.product span.onsale {
+    display: block;
+}
+
+/* 两个 CTA 按钮样式（CONTACT US / Download cataloge） */
+.elementor-525 .elementor-element.elementor-element-f90cfd5 .elementor-button {
+    background-color: var(--e-global-color-blocksy_palette_1);
+    text-transform: uppercase;
+    fill: var(--e-global-color-blocksy_palette_8);
+    color: var(--e-global-color-blocksy_palette_8);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--e-global-color-blocksy_palette_1);
+}
+
+.elementor-525 .elementor-element.elementor-element-f90cfd5 .elementor-button:hover,
+.elementor-525 .elementor-element.elementor-element-f90cfd5 .elementor-button:focus {
+    background-color: var(--e-global-color-blocksy_palette_2);
+    color: var(--e-global-color-blocksy_palette_8);
+    border-color: var(--e-global-color-blocksy_palette_8);
+}
+
+.elementor-525 .elementor-element.elementor-element-f90cfd5 {
+    width: auto;
+    max-width: auto;
+    z-index: 20;
+}
+
+.elementor-525 .elementor-element.elementor-element-f90cfd5 > .elementor-widget-container {
+    margin: 0;
+}
+
+.elementor-525 .elementor-element.elementor-element-9c037d2 .elementor-button {
+    background-color: var(--e-global-color-blocksy_palette_2);
+    text-transform: uppercase;
+    fill: var(--e-global-color-blocksy_palette_8);
+    color: var(--e-global-color-blocksy_palette_8);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.elementor-525 .elementor-element.elementor-element-9c037d2 .elementor-button:hover,
+.elementor-525 .elementor-element.elementor-element-9c037d2 .elementor-button:focus {
+    background-color: #1C1A3000;
+    color: var(--e-global-color-blocksy_palette_1);
+    border-color: var(--e-global-color-blocksy_palette_1);
+}
+
+.elementor-525 .elementor-element.elementor-element-9c037d2 {
+    width: auto;
+    max-width: auto;
+    z-index: 20;
+}
+
+.elementor-525 .elementor-element.elementor-element-9c037d2 > .elementor-widget-container {
+    margin: 0 0 0 60px;
+}
+
+/* READ MORE 按钮（Why Sunway 区块） */
+.elementor-525 .elementor-element.elementor-element-92ab000 .elementor-button {
+    background-color: var(--e-global-color-blocksy_palette_1);
+    text-transform: uppercase;
+    fill: var(--e-global-color-blocksy_palette_8);
+    color: var(--e-global-color-blocksy_palette_8);
+}
+
+.elementor-525 .elementor-element.elementor-element-92ab000 .elementor-button:hover,
+.elementor-525 .elementor-element.elementor-element-92ab000 .elementor-button:focus {
+    background-color: var(--e-global-color-blocksy_palette_2);
+    color: var(--e-global-color-blocksy_palette_8);
+    border-color: var(--e-global-color-blocksy_palette_8);
+}
+
+.elementor-525 .elementor-element.elementor-element-92ab000 > .elementor-widget-container {
+    margin: 30px 0 0 0;
+}
+
+.elementor-525 .elementor-element.elementor-element-92ab000 {
+    z-index: 20;
+}
+
+/* Contact Us Now 区块布局与背景 */
+.elementor-525 .elementor-element.elementor-element-f127fb3:not(.elementor-motion-effects-element-type-background),
+.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: #F6F6F6;
+}
+
+.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+    background-image: url("../../static/image/4cac2854-04d4-4faf-92b4-5c27f0ebff36.png");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.25;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-container {
+    max-width: 900px;
+}
+
+.elementor-525 .elementor-element.elementor-element-f127fb3 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    margin-top: 100px;
+    margin-bottom: 0;
+    padding: 50px 0;
+}
+
+.elementor-525 .elementor-element.elementor-element-ab45d48 {
+    text-align: center;
+}
+
+.elementor-525 .elementor-element.elementor-element-9517402 > .elementor-widget-container {
+    margin: -30px -20px 0 -20px;
+}
+
+@media (max-width: 1024px) {
+    .elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products {
+        grid-column-gap: 20px;
+        grid-row-gap: 40px;
+    }
+
+    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+        background-position: center left;
+    }
+
+    .elementor-525 .elementor-element.elementor-element-f127fb3,
+    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+        border-radius: 50px 0 50px 50px;
+    }
+
+    .elementor-525 .elementor-element.elementor-element-f127fb3 {
+        padding: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-525 .elementor-element.elementor-element-9c037d2 > .elementor-widget-container {
+        margin: 30px 0 0 0;
+    }
+
+    .elementor-525 .elementor-element.elementor-element-55bd102.elementor-wc-products ul.products {
+        grid-column-gap: 20px;
+        grid-row-gap: 40px;
+    }
+
+    .elementor-525 .elementor-element.elementor-element-f127fb3,
+    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+        border-radius: 30px 0 30px 30px;
+    }
+
+.elementor-525 .elementor-element.elementor-element-f127fb3 {
+        padding: 15px;
+    }
+}
+
+/* ==========================================================================
+   Single Product Template (#598) Layout & Styling
+   ========================================================================== */
+
+.elementor-598 .elementor-element.elementor-element-44565186 > .elementor-container,
+.elementor-598 .elementor-element.elementor-element-6c1ac67b > .elementor-container {
+    max-width: 1300px;
+}
+
+.elementor-598 .elementor-element.elementor-element-44565186 {
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.elementor-598 .elementor-element.elementor-element-308036dc > .elementor-element-populated {
+    margin: 0 50px 0 0;
+    --e-column-margin-right: 50px;
+    --e-column-margin-left: 0;
+}
+
+.elementor-598 .elementor-element.elementor-element-30371618 .elementor-heading-title {
+    font-size: 40px;
+    line-height: 1.1em;
+}
+
+.elementor-598 .elementor-element.elementor-element-7f56f53 {
+    color: #00173C;
+}
+
+.elementor-598 .elementor-element.elementor-element-14872236 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated > .elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated > .elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated > .elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-background-slideshow,
+.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-background-slideshow,
+.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-background-slideshow {
+    border-radius: 15px;
+}
+
+.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated {
+    box-shadow: 0 0 10px 0 rgba(231, 231, 231, 0.5);
+    margin: 10px;
+    --e-column-margin-right: 10px;
+    --e-column-margin-left: 10px;
+    padding: 20px 10px;
+}
+
+.elementor-598 .elementor-element.elementor-element-1e2cba0c:hover > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908:hover > .elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b:hover > .elementor-element-populated {
+    box-shadow: 0 0 20px 12px rgba(231, 231, 231, 0.5);
+}
+
+.elementor-598 .elementor-element.elementor-element-5e3969d5 {
+    --icon-box-icon-margin: 5px;
+}
+
+.elementor-598 .elementor-element.elementor-element-5e3969d5 .elementor-icon {
+    font-size: 75px;
+}
+
+.elementor-598 .elementor-element.elementor-element-50344f32:not(.elementor-motion-effects-element-type-background),
+.elementor-598 .elementor-element.elementor-element-50344f32
+    > .elementor-motion-effects-container
+    > .elementor-motion-effects-layer {
+    background-color: var(--e-global-color-blocksy_palette_2);
+}
+
+.elementor-598 .elementor-element.elementor-element-50344f32,
+.elementor-598 .elementor-element.elementor-element-50344f32 > .elementor-background-overlay {
+    border-radius: 10px;
+}
+
+.elementor-598 .elementor-element.elementor-element-50344f32 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 30px 15px;
+    z-index: 1;
+}
+
+.elementor-598 .elementor-element.elementor-element-5d95fd79 {
+    text-align: center;
+}
+
+.elementor-598 .elementor-element.elementor-element-5d95fd79 .elementor-heading-title {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.elementor-598 .elementor-element.elementor-element-2ecac36b .elementor-icon-wrapper {
+    text-align: center;
+}
