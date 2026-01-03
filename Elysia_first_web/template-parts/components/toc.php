@@ -1,9 +1,17 @@
 <?php
 $elysia_show_toc = true;
-if (function_exists('get_field') && is_singular('post')) {
-    $elysia_toc_enabled = get_field('blog_detail_toc_enabled');
-    if ($elysia_toc_enabled === false || $elysia_toc_enabled === '0' || $elysia_toc_enabled === 0) {
-        $elysia_show_toc = false;
+if (function_exists('get_field')) {
+    if (is_singular('post')) {
+        $elysia_toc_enabled = get_field('blog_detail_toc_enabled');
+        if ($elysia_toc_enabled === false || $elysia_toc_enabled === '0' || $elysia_toc_enabled === 0) {
+            $elysia_show_toc = false;
+        }
+    }
+    if (is_singular('solution')) {
+        $elysia_solution_toc_enabled = get_field('solution_detail_show_toc');
+        if ($elysia_solution_toc_enabled === false || $elysia_solution_toc_enabled === '0' || $elysia_solution_toc_enabled === 0) {
+            $elysia_show_toc = false;
+        }
     }
 }
 if (!$elysia_show_toc) {

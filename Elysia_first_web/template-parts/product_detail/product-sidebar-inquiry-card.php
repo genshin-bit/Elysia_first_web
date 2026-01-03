@@ -10,12 +10,14 @@
                 <?php
                 $sidebar_inquiry_title = '';
                 $sidebar_inquiry_text = '';
+                $sidebar_inquiry_form_text = '';
                 $sidebar_inquiry_button_text = '';
                 $sidebar_inquiry_button_link = '';
                 $sidebar_inquiry_icon_svg = '';
                 if (function_exists('get_field')) {
                     $sidebar_inquiry_title = get_field('sidebar_inquiry_title');
                     $sidebar_inquiry_text = get_field('sidebar_inquiry_text');
+                    $sidebar_inquiry_form_text = get_field('sidebar_inquiry_form_text');
                     $sidebar_inquiry_button_text = get_field('sidebar_inquiry_button_text');
                     $sidebar_inquiry_button_link = get_field('sidebar_inquiry_button_link');
                     $sidebar_inquiry_icon_svg = get_field('sidebar_inquiry_icon_svg');
@@ -30,6 +32,8 @@
                 if (!$sidebar_inquiry_button_link) {
                     $sidebar_inquiry_button_link = $default_inquiry_link;
                 }
+                $sidebar_inquiry_modal_id = 'elysia-sidebar-inquiry-modal-' . get_the_ID();
+                $sidebar_inquiry_button_id = 'elysia-sidebar-inquiry-button-' . get_the_ID();
                 ?>
                 <div class="elementor-element elementor-element-5d95fd79 elementor-widget elementor-widget-heading"
                     data-id="5d95fd79" data-element_type="widget"
@@ -86,7 +90,9 @@
                     <div class="elementor-widget-container">
                         <div class="elementor-button-wrapper">
                             <a class="elementor-button elementor-button-link elementor-size-md"
-                                href="<?php echo esc_url($sidebar_inquiry_button_link); ?>">
+                                href="#"
+                                id="<?php echo esc_attr($sidebar_inquiry_button_id); ?>"
+                                data-elysia-modal-target="<?php echo esc_attr($sidebar_inquiry_modal_id); ?>">
                                 <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-text">
                                         <?php echo esc_html($sidebar_inquiry_button_text); ?>
@@ -100,3 +106,100 @@
         </div>
     </div>
 </section>
+<div id="<?php echo esc_attr($sidebar_inquiry_modal_id); ?>" class="elysia-sidebar-inquiry-modal">
+    <div class="elysia-sidebar-inquiry-modal__overlay"></div>
+    <div class="elysia-sidebar-inquiry-modal__content">
+        <button type="button" class="elysia-sidebar-inquiry-modal__close" aria-label="Close">×</button>
+        <?php if ($sidebar_inquiry_form_text) : ?>
+            <p>
+                <?php echo wp_kses_post($sidebar_inquiry_form_text); ?>
+            </p>
+        <?php endif; ?>
+        <?php get_template_part('template-parts/components/contact-form-zoho'); ?>
+    </div>
+</div>
+<script type="text/javascript">
+    (function() {
+        var modalId = '<?php echo esc_js($sidebar_inquiry_modal_id); ?>';
+        var buttonId = '<?php echo esc_js($sidebar_inquiry_button_id); ?>';
+        var modal = document.getElementById(modalId);
+        var button = document.getElementById(buttonId);
+        if (!modal || !button) {
+            return;
+        }
+        var overlay = modal.querySelector('.elysia-sidebar-inquiry-modal__overlay');
+        var closeBtn = modal.querySelector('.elysia-sidebar-inquiry-modal__close');
+
+        function openModal(e) {
+            if (e) {
+                e.preventDefault();
+            }
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            if (e) {
+                e.preventDefault();
+            }
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        button.addEventListener('click', openModal);
+        if (overlay) {
+            overlay.addEventListener('click', closeModal);
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.keyCode === 27) {
+                if (modal.style.display === 'block') {
+                    closeModal();
+                }
+            }
+        });
+    })();
+</script>
+<style>
+    .elysia-sidebar-inquiry-modal {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+    }
+
+    .elysia-sidebar-inquiry-modal__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .elysia-sidebar-inquiry-modal__content {
+        position: relative;
+        max-width: 480px;
+        margin: 40px auto;
+        background: #151530;
+        padding: 24px;
+        border-radius: 8px;
+        color: #ffffff;
+    }
+
+    .elysia-sidebar-inquiry-modal__close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        border: 0;
+        background: transparent;
+        color: #ffffff;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+    }
+</style>

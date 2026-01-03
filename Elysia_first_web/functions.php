@@ -93,6 +93,47 @@ function elysia_first_web_register_product_post_type()
 
 add_action('init', 'elysia_first_web_register_product_post_type');
 
+function elysia_first_web_register_solution_post_type()
+{
+    $labels = array(
+        'name'               => _x('Solutions', 'Post Type General Name', 'elysia_first_web'),
+        'singular_name'      => _x('Solution', 'Post Type Singular Name', 'elysia_first_web'),
+        'menu_name'          => __('Solutions', 'elysia_first_web'),
+        'name_admin_bar'     => __('Solution', 'elysia_first_web'),
+        'add_new'            => __('Add New', 'elysia_first_web'),
+        'add_new_item'       => __('Add New Solution', 'elysia_first_web'),
+        'edit_item'          => __('Edit Solution', 'elysia_first_web'),
+        'new_item'           => __('New Solution', 'elysia_first_web'),
+        'view_item'          => __('View Solution', 'elysia_first_web'),
+        'search_items'       => __('Search Solutions', 'elysia_first_web'),
+        'not_found'          => __('No solutions found', 'elysia_first_web'),
+        'not_found_in_trash' => __('No solutions found in Trash', 'elysia_first_web'),
+    );
+
+    $args = array(
+        'label'               => __('Solution', 'elysia_first_web'),
+        'labels'              => $labels,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 21,
+        'menu_icon'           => 'dashicons-lightbulb',
+        'capability_type'     => 'post',
+        'hierarchical'        => false,
+        'supports'            => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'has_archive'         => false,
+        'rewrite'             => array(
+            'slug'       => 'solution',
+            'with_front' => false,
+        ),
+        'show_in_rest'        => true,
+    );
+
+    register_post_type('solution', $args);
+}
+
+add_action('init', 'elysia_first_web_register_solution_post_type');
+
 function elysia_first_web_register_product_category_taxonomy()
 {
     $labels = array(
@@ -127,6 +168,40 @@ function elysia_first_web_register_product_category_taxonomy()
 
 add_action('init', 'elysia_first_web_register_product_category_taxonomy');
 
+function elysia_first_web_register_solution_category_taxonomy()
+{
+    $labels = array(
+        'name'              => __('Solution Categories', 'elysia_first_web'),
+        'singular_name'     => __('Solution Category', 'elysia_first_web'),
+        'search_items'      => __('Search Solution Categories', 'elysia_first_web'),
+        'all_items'         => __('All Solution Categories', 'elysia_first_web'),
+        'parent_item'       => __('Parent Solution Category', 'elysia_first_web'),
+        'parent_item_colon' => __('Parent Solution Category:', 'elysia_first_web'),
+        'edit_item'         => __('Edit Solution Category', 'elysia_first_web'),
+        'update_item'       => __('Update Solution Category', 'elysia_first_web'),
+        'add_new_item'      => __('Add New Solution Category', 'elysia_first_web'),
+        'new_item_name'     => __('New Solution Category Name', 'elysia_first_web'),
+        'menu_name'         => __('Solution Categories', 'elysia_first_web'),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array(
+            'slug'         => 'solution-category',
+            'hierarchical' => true,
+        ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy('solution_category', array('solution'), $args);
+}
+
+add_action('init', 'elysia_first_web_register_solution_category_taxonomy');
+
 function elysia_first_web_product_single_template($single)
 {
     global $post;
@@ -143,6 +218,22 @@ function elysia_first_web_product_single_template($single)
 
 add_filter('single_template', 'elysia_first_web_product_single_template');
 
+function elysia_first_web_solution_single_template($single)
+{
+    global $post;
+
+    if ($post && $post->post_type === 'solution') {
+        $template = get_theme_file_path('page-solution-detail.php');
+        if (file_exists($template)) {
+            return $template;
+        }
+    }
+
+    return $single;
+}
+
+add_filter('single_template', 'elysia_first_web_solution_single_template');
+
 // 获取社交媒体链接配置（若未配置则使用默认值）
 function elysia_first_web_get_social_links()
 {
@@ -155,10 +246,31 @@ function elysia_first_web_get_social_links()
 // 获取页脚联系方式配置（电话、邮箱、地址）
 function elysia_first_web_get_footer_contacts()
 {
+    $phone   = get_option('elysia_footer_phone', '+86-13616182007');
+    $email   = get_option('elysia_footer_email', 'info@example.com');
+    $address = get_option('elysia_footer_address', 'Wuxi, China');
+
+    if (function_exists('get_field')) {
+        $acf_phone = get_field('global_tel_number', 'option');
+        if ($acf_phone) {
+            $phone = $acf_phone;
+        }
+
+        $acf_email = get_field('global_email_address', 'option');
+        if ($acf_email) {
+            $email = $acf_email;
+        }
+
+        $acf_address = get_field('global_address_text', 'option');
+        if ($acf_address) {
+            $address = $acf_address;
+        }
+    }
+
     return array(
-        'phone'   => get_option('elysia_footer_phone', '+86-13616182007'),
-        'email'   => get_option('elysia_footer_email', 'info@example.com'),
-        'address' => get_option('elysia_footer_address', 'Wuxi, China'),
+        'phone'   => $phone,
+        'email'   => $email,
+        'address' => $address,
     );
 }
 // 输出页脚图标列表菜单（用于 Elementor 图标列表）
@@ -199,6 +311,39 @@ function elysia_first_web_render_footer_icon_menu($location)
     }
 }
 
+function elysia_get_youtube_embed_url($url)
+{
+    $url = trim((string) $url);
+    if ($url === '') {
+        return '';
+    }
+    $parsed = wp_parse_url($url);
+    if (!$parsed || empty($parsed['host'])) {
+        return $url;
+    }
+    $host = strtolower($parsed['host']);
+    $path = isset($parsed['path']) ? trim($parsed['path'], '/') : '';
+    $video_id = '';
+    if ($host === 'youtu.be') {
+        $video_id = $path;
+    } elseif (strpos($host, 'youtube.com') !== false) {
+        if (strpos($path, 'watch') === 0 && !empty($parsed['query'])) {
+            parse_str($parsed['query'], $query);
+            if (!empty($query['v'])) {
+                $video_id = $query['v'];
+            }
+        } elseif (strpos($path, 'shorts/') === 0) {
+            $video_id = substr($path, strlen('shorts/'));
+        } elseif (strpos($path, 'embed/') === 0) {
+            $video_id = substr($path, strlen('embed/'));
+        }
+    }
+    if ($video_id === '') {
+        return $url;
+    }
+    return 'https://www.youtube.com/embed/' . rawurlencode($video_id);
+}
+
 // 注册 ACF 的主题通用设置页（Options Page）
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(
@@ -215,6 +360,15 @@ if (function_exists('acf_add_options_page')) {
             'page_title' => 'Blog Detail Options',
             'menu_title' => 'Blog Detail Options',
             'menu_slug'  => 'acf-blog-detail-options',
+            'capability' => 'edit_posts',
+            'redirect'   => false,
+        )
+    );
+    acf_add_options_page(
+        array(
+            'page_title' => 'Solution Options',
+            'menu_title' => 'Solution Options',
+            'menu_slug'  => 'acf-solution-options',
             'capability' => 'edit_posts',
             'redirect'   => false,
         )
@@ -547,6 +701,155 @@ if (function_exists('acf_add_local_field_group')) {
 
     acf_add_local_field_group(
         array(
+            'key' => 'group_elysia_global_contact_info',
+            'title' => 'Global Contact Info',
+            'fields' => array(
+                array(
+                    'key' => 'field_global_tel_label',
+                    'label' => '电话标签',
+                    'name' => 'global_tel_label',
+                    'type' => 'text',
+                    'default_value' => 'Tel',
+                ),
+                array(
+                    'key' => 'field_global_tel_number',
+                    'label' => '电话号码',
+                    'name' => 'global_tel_number',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_global_email_label',
+                    'label' => '邮箱标签',
+                    'name' => 'global_email_label',
+                    'type' => 'text',
+                    'default_value' => 'Email',
+                ),
+                array(
+                    'key' => 'field_global_email_address',
+                    'label' => '邮箱地址',
+                    'name' => 'global_email_address',
+                    'type' => 'email',
+                ),
+                array(
+                    'key' => 'field_global_whatsapp_label',
+                    'label' => 'WhatsApp 标签',
+                    'name' => 'global_whatsapp_label',
+                    'type' => 'text',
+                    'default_value' => 'WhatsApp',
+                ),
+                array(
+                    'key' => 'field_global_whatsapp_number',
+                    'label' => 'WhatsApp 号码',
+                    'name' => 'global_whatsapp_number',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_global_address_label',
+                    'label' => '地址标签',
+                    'name' => 'global_address_label',
+                    'type' => 'text',
+                    'default_value' => 'Address',
+                ),
+                array(
+                    'key' => 'field_global_address_text',
+                    'label' => '地址内容',
+                    'name' => 'global_address_text',
+                    'type' => 'textarea',
+                    'rows' => 3,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-options',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_contact_page_settings',
+            'title' => 'Contact Page Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_contact_hero_title',
+                    'label' => '页面主标题',
+                    'name' => 'contact_hero_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_contact_intro_subtitle',
+                    'label' => '表单区副标题',
+                    'name' => 'contact_intro_subtitle',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_contact_intro_title',
+                    'label' => '表单区主标题',
+                    'name' => 'contact_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_contact_intro_description',
+                    'label' => '表单区说明文案',
+                    'name' => 'contact_intro_description',
+                    'type' => 'textarea',
+                    'rows' => 4,
+                ),
+                array(
+                    'key' => 'field_contact_cards',
+                    'label' => '联系方式卡片',
+                    'name' => 'contact_cards',
+                    'type' => 'repeater',
+                    'min' => 4,
+                    'max' => 4,
+                    'layout' => 'row',
+                    'button_label' => '添加联系方式',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_contact_cards_label',
+                            'label' => '展示名称',
+                            'name' => 'label',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_contact_cards_value',
+                            'label' => '内容',
+                            'name' => 'value',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_contact_cards_link',
+                            'label' => '链接',
+                            'name' => 'link',
+                            'type' => 'url',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-contact.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
             'key' => 'group_elysia_c_purlin_faq',
             'title' => 'C Purlin FAQ',
             'fields' => array(
@@ -589,6 +892,45 @@ if (function_exists('acf_add_local_field_group')) {
                         'param' => 'page_template',
                         'operator' => '==',
                         'value' => 'woocommerce/archive-product.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_solution_sidebar_defaults',
+            'title' => 'Solution Sidebar Defaults',
+            'fields' => array(
+                array(
+                    'key' => 'field_solution_default_sidebar_video_url',
+                    'label' => '默认侧边视频地址',
+                    'name' => 'solution_default_sidebar_video_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_solution_default_sidebar_video_aspect_ratio',
+                    'label' => '默认侧边视频宽高比',
+                    'name' => 'solution_default_sidebar_video_aspect_ratio',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_solution_default_featured_products',
+                    'label' => '默认推荐产品',
+                    'name' => 'solution_default_featured_products',
+                    'type' => 'relationship',
+                    'post_type' => array('site_product'),
+                    'filters' => array('search', 'post_type', 'taxonomy'),
+                    'return_format' => 'object',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-solution-options',
                     ),
                 ),
             ),
@@ -897,18 +1239,6 @@ if (function_exists('acf_add_local_field_group')) {
                     'toolbar' => 'basic',
                     'media_upload' => 0,
                 ),
-                array(
-                    'key' => 'field_inquiry_section_button_text',
-                    'label' => '按钮文字',
-                    'name' => 'inquiry_section_button_text',
-                    'type' => 'text',
-                ),
-                array(
-                    'key' => 'field_inquiry_section_button_link',
-                    'label' => '按钮链接',
-                    'name' => 'inquiry_section_button_link',
-                    'type' => 'text',
-                ),
             ),
             'location' => array(
                 array(
@@ -941,15 +1271,16 @@ if (function_exists('acf_add_local_field_group')) {
                     'rows' => 4,
                 ),
                 array(
+                    'key' => 'field_sidebar_inquiry_form_text',
+                    'label' => '表单上方说明文字',
+                    'name' => 'sidebar_inquiry_form_text',
+                    'type' => 'textarea',
+                    'rows' => 4,
+                ),
+                array(
                     'key' => 'field_sidebar_inquiry_button_text',
                     'label' => '侧边按钮文字',
                     'name' => 'sidebar_inquiry_button_text',
-                    'type' => 'text',
-                ),
-                array(
-                    'key' => 'field_sidebar_inquiry_button_link',
-                    'label' => '侧边按钮链接',
-                    'name' => 'sidebar_inquiry_button_link',
                     'type' => 'text',
                 ),
                 array(
@@ -1170,6 +1501,216 @@ if (function_exists('acf_add_local_field_group')) {
     }
 
     add_action('wp_ajax_elysia_get_product_subcategories', 'elysia_get_product_subcategories_ajax');
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_solution_archive_settings',
+            'title' => 'Solution Archive Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_solution_list_title',
+                    'label' => '列表主标题',
+                    'name' => 'solution_list_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_solution_list_subtitle',
+                    'label' => '列表副标题',
+                    'name' => 'solution_list_subtitle',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_solution_list_intro',
+                    'label' => '列表说明',
+                    'name' => 'solution_list_intro',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_solution_archive_banner_image',
+                    'label' => '列表页 Banner 图',
+                    'name' => 'solution_archive_banner_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_solution_archive_banner_desc',
+                    'label' => 'Banner 描述文案',
+                    'name' => 'solution_archive_banner_desc',
+                    'type' => 'textarea',
+                    'rows' => 3,
+                ),
+                array(
+                    'key' => 'field_solution_list_items_per_page',
+                    'label' => '每页解决方案数量',
+                    'name' => 'solution_list_items_per_page',
+                    'type' => 'number',
+                    'default_value' => 9,
+                    'min' => 1,
+                ),
+                array(
+                    'key' => 'field_solution_list_default_order',
+                    'label' => '默认排序规则',
+                    'name' => 'solution_list_default_order',
+                    'type' => 'select',
+                    'choices' => array(
+                        'date_desc' => '按发布时间（新到旧）',
+                        'date_asc' => '按发布时间（旧到新）',
+                        'menu_order' => '自定义排序',
+                    ),
+                    'default_value' => 'date_desc',
+                    'allow_null' => 0,
+                    'multiple' => 0,
+                    'ui' => 1,
+                    'return_format' => 'value',
+                ),
+                array(
+                    'key' => 'field_solution_list_featured_ids',
+                    'label' => '推荐解决方案',
+                    'name' => 'solution_list_featured_ids',
+                    'type' => 'relationship',
+                    'post_type' => array('solution'),
+                    'filters' => array('search', 'taxonomy'),
+                    'return_format' => 'object',
+                ),
+                array(
+                    'key' => 'field_solution_featured_products',
+                    'label' => '推荐产品（Feature Product）',
+                    'name' => 'solution_featured_products',
+                    'type' => 'relationship',
+                    'post_type' => array('site_product'),
+                    'filters' => array('search', 'taxonomy'),
+                    'return_format' => 'object',
+                    'max' => 4,
+                ),
+                array(
+                    'key' => 'field_solution_sidebar_video_url',
+                    'label' => '侧边视频地址（YouTube URL）',
+                    'name' => 'solution_sidebar_video_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_solution_sidebar_video_aspect_ratio',
+                    'label' => '侧边视频宽高比（可选）',
+                    'name' => 'solution_sidebar_video_aspect_ratio',
+                    'type' => 'text',
+                    'default_value' => '16/9',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-solution.php',
+                    ),
+                ),
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-solution-detail.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_solution_detail_settings',
+            'title' => 'Solution Detail Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_solution_detail_show_toc',
+                    'label' => '是否显示目录（TOC）',
+                    'name' => 'solution_detail_show_toc',
+                    'type' => 'true_false',
+                    'ui' => 1,
+                    'default_value' => 1,
+                ),
+                array(
+                    'key' => 'field_solution_detail_share_title',
+                    'label' => '侧边分享标题',
+                    'name' => 'solution_detail_share_title',
+                    'type' => 'text',
+                    'default_value' => 'Share',
+                ),
+                array(
+                    'key' => 'field_solution_detail_sidebar_video_url',
+                    'label' => '详情页侧边视频地址（YouTube URL）',
+                    'name' => 'solution_detail_sidebar_video_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_solution_detail_sidebar_video_aspect_ratio',
+                    'label' => '详情页侧边视频宽高比',
+                    'name' => 'solution_detail_sidebar_video_aspect_ratio',
+                    'type' => 'text',
+                    'default_value' => '16/9',
+                ),
+                array(
+                    'key' => 'field_solution_detail_related_mode',
+                    'label' => '相关解决方案模式',
+                    'name' => 'solution_detail_related_mode',
+                    'type' => 'select',
+                    'choices' => array(
+                        'auto_category' => '按分类自动推荐',
+                        'manual'        => '手动选择',
+                    ),
+                    'default_value' => 'auto_category',
+                    'ui' => 1,
+                    'return_format' => 'value',
+                ),
+                array(
+                    'key' => 'field_solution_detail_related_manual',
+                    'label' => '手动选择的相关解决方案',
+                    'name' => 'solution_detail_related_manual',
+                    'type' => 'relationship',
+                    'post_type' => array('solution'),
+                    'filters' => array('search', 'taxonomy'),
+                    'return_format' => 'object',
+                ),
+                array(
+                    'key' => 'field_solution_detail_related_title',
+                    'label' => '相关解决方案标题',
+                    'name' => 'solution_detail_related_title',
+                    'type' => 'text',
+                    'default_value' => 'Related Solutions',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'solution',
+                    ),
+                ),
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'post',
+                    ),
+                ),
+            ),
+        )
+    );
 
     acf_add_local_field_group(
         array(
