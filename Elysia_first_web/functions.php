@@ -850,6 +850,406 @@ if (function_exists('acf_add_local_field_group')) {
 
     acf_add_local_field_group(
         array(
+            'key' => 'group_elysia_page_hero_settings',
+            'title' => 'Page Hero 通用配置',
+            'fields' => array(
+                array(
+                    'key' => 'field_hero_title',
+                    'label' => 'Hero 标题',
+                    'name' => 'hero_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_hero_subtitle',
+                    'label' => 'Hero 副标题',
+                    'name' => 'hero_subtitle',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_hero_background_image',
+                    'label' => 'Hero 背景图',
+                    'name' => 'hero_background_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                ),
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-options',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_about_company_intro',
+            'title' => 'About - 公司介绍',
+            'fields' => array(
+                array(
+                    'key' => 'field_about_intro_badge',
+                    'label' => '副标题徽标',
+                    'name' => 'about_intro_badge',
+                    'type' => 'text',
+                    'default_value' => 'About SUNWAY',
+                ),
+                array(
+                    'key' => 'field_about_intro_title',
+                    'label' => '主标题',
+                    'name' => 'about_intro_title',
+                    'type' => 'text',
+                    'default_value' => 'Professional manufacturer and exporter of cold-forming machinery',
+                ),
+                array(
+                    'key' => 'field_about_intro_paragraphs',
+                    'label' => '介绍段落',
+                    'name' => 'about_intro_paragraphs',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加段落',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_about_intro_paragraph_text',
+                            'label' => '段落内容',
+                            'name' => 'text',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_about_intro_image',
+                    'label' => '左侧图片',
+                    'name' => 'about_intro_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_about_intro_link_type',
+                    'label' => '按钮链接类型',
+                    'name' => 'about_intro_link_type',
+                    'type' => 'select',
+                    'choices' => array(
+                        'popup' => 'Popup',
+                        'page' => 'Page URL',
+                    ),
+                    'default_value' => 'popup',
+                    'allow_null' => 0,
+                    'multiple' => 0,
+                    'ui' => 1,
+                    'return_format' => 'value',
+                ),
+                array(
+                    'key' => 'field_about_intro_popup_id',
+                    'label' => 'Popup ID',
+                    'name' => 'about_intro_popup_id',
+                    'type' => 'number',
+                    'default_value' => 306,
+                ),
+                array(
+                    'key' => 'field_about_intro_cta_url',
+                    'label' => '按钮链接地址',
+                    'name' => 'about_intro_cta_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_about_intro_cta_label',
+                    'label' => '按钮文字',
+                    'name' => 'about_intro_cta_label',
+                    'type' => 'text',
+                    'default_value' => 'CONTACT US',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-about-us.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_about_capabilities',
+            'title' => 'About - 能力与工厂 CTA',
+            'fields' => array(
+                array(
+                    'key' => 'field_capabilities_badge',
+                    'label' => '能力区副标题',
+                    'name' => 'capabilities_badge',
+                    'type' => 'text',
+                    'default_value' => 'Our Capabilities',
+                ),
+                array(
+                    'key' => 'field_capabilities_title',
+                    'label' => '能力区主标题',
+                    'name' => 'capabilities_title',
+                    'type' => 'text',
+                    'default_value' => 'We Meet timeliness and quality requirements',
+                ),
+                array(
+                    'key' => 'field_capabilities_description',
+                    'label' => '能力区说明',
+                    'name' => 'capabilities_description',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_capabilities_cta_label',
+                    'label' => '按钮文字',
+                    'name' => 'capabilities_cta_label',
+                    'type' => 'text',
+                    'default_value' => 'Step into our factory',
+                ),
+                array(
+                    'key' => 'field_capabilities_cta_target',
+                    'label' => '工厂页面',
+                    'name' => 'capabilities_cta_target',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_capabilities_main_image',
+                    'label' => '主图片',
+                    'name' => 'capabilities_main_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_capabilities_secondary_image',
+                    'label' => '叠加图片',
+                    'name' => 'capabilities_secondary_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-about-us.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_global_brand_mission',
+            'title' => 'Global - 品牌使命 / 目标 / 研发',
+            'fields' => array(
+                array(
+                    'key' => 'field_mission_background_slides',
+                    'label' => '背景幻灯片',
+                    'name' => 'mission_background_slides',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加背景图',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_mission_background_image',
+                            'label' => '图片',
+                            'name' => 'image',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'large',
+                            'library' => 'all',
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_mission_items',
+                    'label' => '使命条目',
+                    'name' => 'mission_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加条目',
+                    'min' => 3,
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_mission_item_index',
+                            'label' => '序号',
+                            'name' => 'index',
+                            'type' => 'text',
+                            'default_value' => '01',
+                        ),
+                        array(
+                            'key' => 'field_mission_item_title',
+                            'label' => '标题',
+                            'name' => 'title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_mission_item_description',
+                            'label' => '描述',
+                            'name' => 'description',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_mission_item_animation',
+                            'label' => '动画效果',
+                            'name' => 'animation',
+                            'type' => 'select',
+                            'choices' => array(
+                                'zoomIn' => 'zoomIn',
+                                'none' => 'none',
+                            ),
+                            'default_value' => 'zoomIn',
+                            'allow_null' => 0,
+                            'multiple' => 0,
+                            'ui' => 1,
+                            'return_format' => 'value',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-options',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_about_mission_override',
+            'title' => 'About - 使命区覆盖',
+            'fields' => array(
+                array(
+                    'key' => 'field_about_mission_background_slides',
+                    'label' => '本页背景幻灯片',
+                    'name' => 'about_mission_background_slides',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加背景图',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_about_mission_background_image',
+                            'label' => '图片',
+                            'name' => 'image',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'large',
+                            'library' => 'all',
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_about_mission_items',
+                    'label' => '本页使命条目',
+                    'name' => 'about_mission_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加条目',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_about_mission_item_index',
+                            'label' => '序号',
+                            'name' => 'index',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_about_mission_item_title',
+                            'label' => '标题',
+                            'name' => 'title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_about_mission_item_description',
+                            'label' => '描述',
+                            'name' => 'description',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_about_mission_item_animation',
+                            'label' => '动画效果',
+                            'name' => 'animation',
+                            'type' => 'select',
+                            'choices' => array(
+                                'zoomIn' => 'zoomIn',
+                                'none' => 'none',
+                            ),
+                            'default_value' => 'zoomIn',
+                            'allow_null' => 0,
+                            'multiple' => 0,
+                            'ui' => 1,
+                            'return_format' => 'value',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-about-us.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
             'key' => 'group_elysia_c_purlin_faq',
             'title' => 'C Purlin FAQ',
             'fields' => array(

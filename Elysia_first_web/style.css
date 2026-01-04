@@ -242,7 +242,7 @@ img {
     z-index: 20;
 }
 
-.elementor-525 .elementor-element.elementor-element-f90cfd5 > .elementor-widget-container {
+.elementor-525 .elementor-element.elementor-element-f90cfd5>.elementor-widget-container {
     margin: 0;
 }
 
@@ -268,7 +268,7 @@ img {
     z-index: 20;
 }
 
-.elementor-525 .elementor-element.elementor-element-9c037d2 > .elementor-widget-container {
+.elementor-525 .elementor-element.elementor-element-9c037d2>.elementor-widget-container {
     margin: 0 0 0 60px;
 }
 
@@ -287,7 +287,7 @@ img {
     border-color: var(--e-global-color-blocksy_palette_8);
 }
 
-.elementor-525 .elementor-element.elementor-element-92ab000 > .elementor-widget-container {
+.elementor-525 .elementor-element.elementor-element-92ab000>.elementor-widget-container {
     margin: 30px 0 0 0;
 }
 
@@ -297,11 +297,11 @@ img {
 
 /* Contact Us Now 区块布局与背景 */
 .elementor-525 .elementor-element.elementor-element-f127fb3:not(.elementor-motion-effects-element-type-background),
-.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+.elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-motion-effects-container>.elementor-motion-effects-layer {
     background-color: #F6F6F6;
 }
 
-.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+.elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-background-overlay {
     background-image: url("../../static/image/4cac2854-04d4-4faf-92b4-5c27f0ebff36.png");
     background-position: top center;
     background-repeat: no-repeat;
@@ -310,7 +310,7 @@ img {
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
 }
 
-.elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-container {
+.elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-container {
     max-width: 900px;
 }
 
@@ -325,7 +325,7 @@ img {
     text-align: center;
 }
 
-.elementor-525 .elementor-element.elementor-element-9517402 > .elementor-widget-container {
+.elementor-525 .elementor-element.elementor-element-9517402>.elementor-widget-container {
     margin: -30px -20px 0 -20px;
 }
 
@@ -335,12 +335,12 @@ img {
         grid-row-gap: 40px;
     }
 
-    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+    .elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-background-overlay {
         background-position: center left;
     }
 
     .elementor-525 .elementor-element.elementor-element-f127fb3,
-    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+    .elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-background-overlay {
         border-radius: 50px 0 50px 50px;
     }
 
@@ -350,7 +350,7 @@ img {
 }
 
 @media (max-width: 767px) {
-    .elementor-525 .elementor-element.elementor-element-9c037d2 > .elementor-widget-container {
+    .elementor-525 .elementor-element.elementor-element-9c037d2>.elementor-widget-container {
         margin: 30px 0 0 0;
     }
 
@@ -360,11 +360,11 @@ img {
     }
 
     .elementor-525 .elementor-element.elementor-element-f127fb3,
-    .elementor-525 .elementor-element.elementor-element-f127fb3 > .elementor-background-overlay {
+    .elementor-525 .elementor-element.elementor-element-f127fb3>.elementor-background-overlay {
         border-radius: 30px 0 30px 30px;
     }
 
-.elementor-525 .elementor-element.elementor-element-f127fb3 {
+    .elementor-525 .elementor-element.elementor-element-f127fb3 {
         padding: 15px;
     }
 }
@@ -373,8 +373,8 @@ img {
    Single Product Template (#598) Layout & Styling
    ========================================================================== */
 
-.elementor-598 .elementor-element.elementor-element-44565186 > .elementor-container,
-.elementor-598 .elementor-element.elementor-element-6c1ac67b > .elementor-container {
+.elementor-598 .elementor-element.elementor-element-44565186>.elementor-container,
+.elementor-598 .elementor-element.elementor-element-6c1ac67b>.elementor-container {
     max-width: 1300px;
 }
 
@@ -383,7 +383,7 @@ img {
     margin-bottom: 0;
 }
 
-.elementor-598 .elementor-element.elementor-element-308036dc > .elementor-element-populated {
+.elementor-598 .elementor-element.elementor-element-308036dc>.elementor-element-populated {
     margin: 0 50px 0 0;
     --e-column-margin-right: 50px;
     --e-column-margin-left: 0;
@@ -403,21 +403,21 @@ img {
     margin-bottom: 20px;
 }
 
-.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated > .elementor-background-overlay,
-.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated > .elementor-background-overlay,
-.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated > .elementor-background-overlay,
-.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-background-slideshow,
-.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-background-slideshow,
-.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-background-slideshow {
+.elementor-598 .elementor-element.elementor-element-1e2cba0c>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-1e2cba0c>.elementor-element-populated>.elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-19c0b908>.elementor-element-populated>.elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-6faad96b>.elementor-element-populated>.elementor-background-overlay,
+.elementor-598 .elementor-element.elementor-element-1e2cba0c>.elementor-background-slideshow,
+.elementor-598 .elementor-element.elementor-element-19c0b908>.elementor-background-slideshow,
+.elementor-598 .elementor-element.elementor-element-6faad96b>.elementor-background-slideshow {
     border-radius: 15px;
 }
 
-.elementor-598 .elementor-element.elementor-element-1e2cba0c > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-19c0b908 > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-6faad96b > .elementor-element-populated {
+.elementor-598 .elementor-element.elementor-element-1e2cba0c>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b>.elementor-element-populated {
     box-shadow: 0 0 10px 0 rgba(231, 231, 231, 0.5);
     margin: 10px;
     --e-column-margin-right: 10px;
@@ -425,9 +425,9 @@ img {
     padding: 20px 10px;
 }
 
-.elementor-598 .elementor-element.elementor-element-1e2cba0c:hover > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-19c0b908:hover > .elementor-element-populated,
-.elementor-598 .elementor-element.elementor-element-6faad96b:hover > .elementor-element-populated {
+.elementor-598 .elementor-element.elementor-element-1e2cba0c:hover>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-19c0b908:hover>.elementor-element-populated,
+.elementor-598 .elementor-element.elementor-element-6faad96b:hover>.elementor-element-populated {
     box-shadow: 0 0 20px 12px rgba(231, 231, 231, 0.5);
 }
 
@@ -440,14 +440,12 @@ img {
 }
 
 .elementor-598 .elementor-element.elementor-element-50344f32:not(.elementor-motion-effects-element-type-background),
-.elementor-598 .elementor-element.elementor-element-50344f32
-    > .elementor-motion-effects-container
-    > .elementor-motion-effects-layer {
+.elementor-598 .elementor-element.elementor-element-50344f32>.elementor-motion-effects-container>.elementor-motion-effects-layer {
     background-color: var(--e-global-color-blocksy_palette_2);
 }
 
 .elementor-598 .elementor-element.elementor-element-50344f32,
-.elementor-598 .elementor-element.elementor-element-50344f32 > .elementor-background-overlay {
+.elementor-598 .elementor-element.elementor-element-50344f32>.elementor-background-overlay {
     border-radius: 10px;
 }
 

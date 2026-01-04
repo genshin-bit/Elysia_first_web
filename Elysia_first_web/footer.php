@@ -319,6 +319,7 @@
 	};
 </script>
 <script src="<?php echo get_template_directory_uri(); ?>/static/js/general.min.js" id="eael-general-js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/static/js/eael-294.js" id="eael-294-js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/static/js/eael-1206.js" id="eael-1206-js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/static/js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/static/js/hooks.min.js" id="wp-hooks-js"></script>
