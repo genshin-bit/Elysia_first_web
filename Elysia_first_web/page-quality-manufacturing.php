@@ -49,6 +49,7 @@ get_header();
 <link rel='stylesheet' id='eael-general-css' href='<?php echo get_template_directory_uri(); ?>/static/css/general.min.css' media='all' />
 <link rel='stylesheet' id='elementor-icons-css' href='<?php echo get_template_directory_uri(); ?>/static/css/elementor-icons.min.css' media='all' />
 <link rel='stylesheet' id='elementor-post-5-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-5.css' media='all' />
+<link rel='stylesheet' id='elementor-post-188-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-188.css' media='all' />
 <link rel='stylesheet' id='elementor-post-248-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-248.css' media='all' />
 <link rel='stylesheet' id='elementor-post-306-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-306.css' media='all' />
 <link rel='stylesheet' id='elementor-post-442-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-442.css' media='all' />
@@ -97,8 +98,12 @@ get_header();
             </div>
             <div class="entry-content is-layout-constrained">
                 <div data-elementor-type="wp-page" data-elementor-id="248" class="elementor elementor-248" data-elementor-post-type="page">
+                    <div class="elementor elementor-188">
+                        <?php
+                        get_template_part('template-parts/components/page-hero-title');
+                        ?>
+                    </div>
                     <?php
-                    get_template_part('template-parts/one_page/quality-manufacturing-hero');
                     get_template_part('template-parts/one_page/quality-manufacturing-intro');
                     get_template_part('template-parts/one_page/quality-manufacturing-worth-invest');
                     get_template_part('template-parts/one_page/quality-manufacturing-supply-chain');

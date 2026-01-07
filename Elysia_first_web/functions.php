@@ -48,6 +48,225 @@ function elysia_first_web_setup()
             'footer_company'  => __('Footer Company Menu', 'elysia_first_web'),
         )
     );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_global_faq_settings',
+            'title' => 'Global - FAQ 全局设置',
+            'fields' => array(
+                array(
+                    'key' => 'field_faq_page_ref',
+                    'label' => 'FAQ 页面引用',
+                    'name' => 'faq_page_ref',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_faq_intro_title_default',
+                    'label' => '默认 FAQ Intro 标题',
+                    'name' => 'faq_intro_title_default',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_text_default',
+                    'label' => '默认 FAQ Intro 文本',
+                    'name' => 'faq_intro_text_default',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_text_default',
+                    'label' => '默认 FAQ Intro 按钮文案',
+                    'name' => 'faq_intro_button_text_default',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_page_default',
+                    'label' => '默认 FAQ Intro 按钮链接页面',
+                    'name' => 'faq_intro_button_page_default',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_url_default',
+                    'label' => '默认 FAQ Intro 按钮链接地址',
+                    'name' => 'faq_intro_button_url_default',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_faq_items_default',
+                    'label' => '默认 FAQ 列表',
+                    'name' => 'faq_items_default',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加 FAQ',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_faq_items_default_question',
+                            'label' => '问题',
+                            'name' => 'question',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_default_answer',
+                            'label' => '回答',
+                            'name' => 'answer',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_faq_items_default_slug',
+                            'label' => '锚点 ID',
+                            'name' => 'slug',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_default_is_default_open',
+                            'label' => '默认展开',
+                            'name' => 'is_default_open',
+                            'type' => 'true_false',
+                            'ui' => 1,
+                            'default_value' => 0,
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_faq_items_per_page_default',
+                    'label' => 'FAQ 显示条数默认值',
+                    'name' => 'faq_items_per_page_default',
+                    'type' => 'number',
+                    'min' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-options',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_faq_page_settings',
+            'title' => 'FAQ 页面设置',
+            'fields' => array(
+                array(
+                    'key' => 'field_faq_intro_title',
+                    'label' => 'FAQ Intro 标题',
+                    'name' => 'faq_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_text',
+                    'label' => 'FAQ Intro 文本',
+                    'name' => 'faq_intro_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_text',
+                    'label' => 'FAQ Intro 按钮文案',
+                    'name' => 'faq_intro_button_text',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_page',
+                    'label' => 'FAQ Intro 按钮链接页面',
+                    'name' => 'faq_intro_button_page',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_url',
+                    'label' => 'FAQ Intro 按钮链接地址',
+                    'name' => 'faq_intro_button_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_faq_items',
+                    'label' => 'FAQ 列表',
+                    'name' => 'faq_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加 FAQ',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_faq_items_question',
+                            'label' => '问题',
+                            'name' => 'question',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_answer',
+                            'label' => '回答',
+                            'name' => 'answer',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_faq_items_slug',
+                            'label' => '锚点 ID',
+                            'name' => 'slug',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_is_default_open',
+                            'label' => '默认展开',
+                            'name' => 'is_default_open',
+                            'type' => 'true_false',
+                            'ui' => 1,
+                            'default_value' => 0,
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_faq_related_pages',
+                    'label' => 'FAQ 关联页面',
+                    'name' => 'faq_related_pages',
+                    'type' => 'relationship',
+                    'post_type' => array('page'),
+                    'filters' => array('search', 'post_type'),
+                    'return_format' => 'object',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-faq.php',
+                    ),
+                ),
+            ),
+        )
+    );
 }
 
 add_action('after_setup_theme', 'elysia_first_web_setup');
@@ -376,6 +595,114 @@ if (function_exists('acf_add_options_page')) {
 }
 // 注册所有依赖 ACF 的字段组（全局产品模块配置）
 if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_faq_page_settings',
+            'title' => 'FAQ 页面设置',
+            'fields' => array(
+                array(
+                    'key' => 'field_faq_intro_title',
+                    'label' => 'FAQ Intro 标题',
+                    'name' => 'faq_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_text',
+                    'label' => 'FAQ Intro 文本',
+                    'name' => 'faq_intro_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_text',
+                    'label' => 'FAQ Intro 按钮文案',
+                    'name' => 'faq_intro_button_text',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_page',
+                    'label' => 'FAQ Intro 按钮链接页面',
+                    'name' => 'faq_intro_button_page',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_faq_intro_button_url',
+                    'label' => 'FAQ Intro 按钮链接地址',
+                    'name' => 'faq_intro_button_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_faq_items',
+                    'label' => 'FAQ 列表',
+                    'name' => 'faq_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加 FAQ',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_faq_items_question',
+                            'label' => '问题',
+                            'name' => 'question',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_answer',
+                            'label' => '回答',
+                            'name' => 'answer',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_faq_items_slug',
+                            'label' => '锚点 ID',
+                            'name' => 'slug',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_faq_items_is_default_open',
+                            'label' => '默认展开',
+                            'name' => 'is_default_open',
+                            'type' => 'true_false',
+                            'ui' => 1,
+                            'default_value' => 0,
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_faq_related_pages',
+                    'label' => 'FAQ 关联页面',
+                    'name' => 'faq_related_pages',
+                    'type' => 'relationship',
+                    'post_type' => array('page'),
+                    'filters' => array('search', 'post_type'),
+                    'return_format' => 'object',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-faq.php',
+                    ),
+                ),
+            ),
+        )
+    );
 
     acf_add_local_field_group(
         array(
@@ -1018,6 +1345,435 @@ if (function_exists('acf_add_local_field_group')) {
                         'param' => 'page_template',
                         'operator' => '==',
                         'value' => 'page-factory.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_quality_page_settings',
+            'title' => '质量制造页面设置',
+            'fields' => array(
+                array(
+                    'key' => 'field_quality_intro_badge',
+                    'label' => 'Intro 小标题',
+                    'name' => 'quality_intro_badge',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_intro_title',
+                    'label' => 'Intro 主标题',
+                    'name' => 'quality_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_intro_text',
+                    'label' => 'Intro 正文',
+                    'name' => 'quality_intro_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_quality_intro_image',
+                    'label' => 'Intro 图片',
+                    'name' => 'quality_intro_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_quality_intro_contact_button_text',
+                    'label' => 'Intro 按钮文案',
+                    'name' => 'quality_intro_contact_button_text',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_intro_contact_popup_id',
+                    'label' => 'Intro 按钮弹窗 ID',
+                    'name' => 'quality_intro_contact_popup_id',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_worth_badge',
+                    'label' => 'Worthy Invest 小标题',
+                    'name' => 'quality_worth_badge',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_worth_title',
+                    'label' => 'Worthy Invest 主标题',
+                    'name' => 'quality_worth_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_worth_cards',
+                    'label' => '价值主张卡片',
+                    'name' => 'quality_worth_cards',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加价值卡片',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_quality_worth_card_icon_svg',
+                            'label' => '图标 SVG',
+                            'name' => 'icon_svg',
+                            'type' => 'textarea',
+                        ),
+                        array(
+                            'key' => 'field_quality_worth_card_title',
+                            'label' => '标题',
+                            'name' => 'title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_quality_worth_card_description',
+                            'label' => '描述',
+                            'name' => 'description',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_quality_supply_badge',
+                    'label' => '供应链模块小标题',
+                    'name' => 'quality_supply_badge',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_title',
+                    'label' => '供应链模块主标题',
+                    'name' => 'quality_supply_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_1_order',
+                    'label' => '段落1序号',
+                    'name' => 'quality_supply_1_order',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_1_title',
+                    'label' => '段落1标题',
+                    'name' => 'quality_supply_1_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_1_text',
+                    'label' => '段落1正文',
+                    'name' => 'quality_supply_1_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_quality_supply_1_image',
+                    'label' => '段落1图片',
+                    'name' => 'quality_supply_1_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_quality_supply_2_order',
+                    'label' => '段落2序号',
+                    'name' => 'quality_supply_2_order',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_2_title',
+                    'label' => '段落2标题',
+                    'name' => 'quality_supply_2_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_quality_supply_2_text',
+                    'label' => '段落2正文',
+                    'name' => 'quality_supply_2_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_quality_supply_2_image',
+                    'label' => '段落2图片',
+                    'name' => 'quality_supply_2_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-quality-manufacturing.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_why_us_hero',
+            'title' => 'Why Us 页面 - 基础与首屏',
+            'fields' => array(
+                array(
+                    'key' => 'field_why_us_hero_title',
+                    'label' => 'Hero 标题',
+                    'name' => 'why_us_hero_title',
+                    'type' => 'text',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-why-us.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_why_us_intro',
+            'title' => 'Why Us 页面 - 导语模块',
+            'fields' => array(
+                array(
+                    'key' => 'field_why_intro_eyebrow',
+                    'label' => '导语上方小标题',
+                    'name' => 'why_intro_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_why_intro_title',
+                    'label' => '导语主标题',
+                    'name' => 'why_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_why_intro_body',
+                    'label' => '导语正文',
+                    'name' => 'why_intro_body',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_why_intro_cta_text',
+                    'label' => '按钮文案',
+                    'name' => 'why_intro_cta_text',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_why_intro_cta_type',
+                    'label' => '按钮类型',
+                    'name' => 'why_intro_cta_type',
+                    'type' => 'select',
+                    'choices' => array(
+                        'popup' => 'Popup',
+                        'contact_page' => 'Contact Page',
+                        'custom_url' => 'Custom URL',
+                    ),
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                    'ui' => 1,
+                    'return_format' => 'value',
+                ),
+                array(
+                    'key' => 'field_why_intro_cta_popup_id',
+                    'label' => 'Popup ID',
+                    'name' => 'why_intro_cta_popup_id',
+                    'type' => 'number',
+                ),
+                array(
+                    'key' => 'field_why_intro_cta_page',
+                    'label' => '联系页面',
+                    'name' => 'why_intro_cta_page',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_why_intro_cta_custom_url',
+                    'label' => '自定义链接',
+                    'name' => 'why_intro_cta_custom_url',
+                    'type' => 'url',
+                ),
+                array(
+                    'key' => 'field_why_intro_image_main',
+                    'label' => '主图',
+                    'name' => 'why_intro_image_main',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_why_intro_image_secondary',
+                    'label' => '副图',
+                    'name' => 'why_intro_image_secondary',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-why-us.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_why_us_advantages',
+            'title' => 'Why Us 页面 - 优势栅格',
+            'fields' => array(
+                array(
+                    'key' => 'field_why_advantages_eyebrow',
+                    'label' => '优势区上方文案',
+                    'name' => 'why_advantages_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_why_advantages_title',
+                    'label' => '优势区主标题',
+                    'name' => 'why_advantages_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_why_advantages_items',
+                    'label' => '优势列表',
+                    'name' => 'why_advantages_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加优势',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_why_advantage_title',
+                            'label' => '优势标题',
+                            'name' => 'why_advantage_title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_description',
+                            'label' => '优势描述',
+                            'name' => 'why_advantage_description',
+                            'type' => 'wysiwyg',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_layout_group',
+                            'label' => '所属行',
+                            'name' => 'why_advantage_layout_group',
+                            'type' => 'select',
+                            'choices' => array(
+                                '1' => '第一行',
+                                '2' => '第二行',
+                                '3' => '第三行',
+                            ),
+                            'allow_null' => 1,
+                            'multiple' => 0,
+                            'ui' => 1,
+                            'return_format' => 'value',
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_icon_style',
+                            'label' => '图标 SVG 图片',
+                            'name' => 'why_advantage_icon_style',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'thumbnail',
+                            'library' => 'all',
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_link_type',
+                            'label' => '链接类型',
+                            'name' => 'why_advantage_link_type',
+                            'type' => 'select',
+                            'choices' => array(
+                                'none' => '无链接',
+                                'page' => '页面链接',
+                                'custom' => '自定义链接',
+                            ),
+                            'allow_null' => 1,
+                            'multiple' => 0,
+                            'ui' => 1,
+                            'return_format' => 'value',
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_link_page',
+                            'label' => '目标页面',
+                            'name' => 'why_advantage_link_page',
+                            'type' => 'post_object',
+                            'post_type' => array('page'),
+                            'return_format' => 'id',
+                            'allow_null' => 1,
+                            'multiple' => 0,
+                        ),
+                        array(
+                            'key' => 'field_why_advantage_custom_url',
+                            'label' => '自定义链接地址',
+                            'name' => 'why_advantage_custom_url',
+                            'type' => 'url',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-why-us.php',
                     ),
                 ),
             ),
@@ -2569,6 +3325,541 @@ if (function_exists('acf_add_local_field_group')) {
             ),
         )
     );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_project_page_settings',
+            'title' => '项目案例页面设置',
+            'fields' => array(
+                array(
+                    'key' => 'field_project_intro_badge',
+                    'label' => '项目简介小标题',
+                    'name' => 'project_intro_badge',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_project_intro_title',
+                    'label' => '项目简介主标题',
+                    'name' => 'project_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_project_intro_text',
+                    'label' => '项目简介正文',
+                    'name' => 'project_intro_text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_project_intro_image_main',
+                    'label' => '项目简介右侧大图',
+                    'name' => 'project_intro_image_main',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_project_intro_image_secondary',
+                    'label' => '项目简介右侧小图',
+                    'name' => 'project_intro_image_secondary',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_project_items',
+                    'label' => '项目列表',
+                    'name' => 'project_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加项目',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_project_items_title',
+                            'label' => '项目标题',
+                            'name' => 'title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_project_items_country',
+                            'label' => '国家/地区',
+                            'name' => 'country',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_project_items_image',
+                            'label' => '项目图片',
+                            'name' => 'image',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'large',
+                            'library' => 'all',
+                        ),
+                        array(
+                            'key' => 'field_project_items_highlight_text',
+                            'label' => '高亮文案',
+                            'name' => 'highlight_text',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_project_items_link_type',
+                            'label' => '链接类型',
+                            'name' => 'link_type',
+                            'type' => 'select',
+                            'choices' => array(
+                                'none' => '无',
+                                'internal' => '站内链接',
+                                'external' => '站外链接',
+                            ),
+                            'default_value' => 'none',
+                            'allow_null' => 1,
+                        ),
+                        array(
+                            'key' => 'field_project_items_link_page',
+                            'label' => '站内链接页面',
+                            'name' => 'link_page',
+                            'type' => 'post_object',
+                            'post_type' => array('page', 'site_product', 'solution'),
+                            'return_format' => 'id',
+                            'allow_null' => 1,
+                            'multiple' => 0,
+                        ),
+                        array(
+                            'key' => 'field_project_items_link_url',
+                            'label' => '站外链接地址',
+                            'name' => 'link_url',
+                            'type' => 'url',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-project.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_base_hero',
+            'title' => '社会责任页面 - 基础与首屏',
+            'fields' => array(
+                array(
+                    'key' => 'field_social_responsibility_hero_title',
+                    'label' => 'Hero 标题',
+                    'name' => 'social_responsibility_hero_title',
+                    'type' => 'text',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_intro_pillars',
+            'title' => '社会责任页面 - 导语与支柱',
+            'fields' => array(
+                array(
+                    'key' => 'field_sr_intro_eyebrow',
+                    'label' => '导语小标题',
+                    'name' => 'sr_intro_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_intro_title',
+                    'label' => '导语主标题',
+                    'name' => 'sr_intro_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_intro_body_main',
+                    'label' => '导语正文主段',
+                    'name' => 'sr_intro_body_main',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_sr_intro_body_sub',
+                    'label' => '导语正文次段',
+                    'name' => 'sr_intro_body_sub',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+                array(
+                    'key' => 'field_sr_intro_cta_text',
+                    'label' => '导语按钮文案',
+                    'name' => 'sr_intro_cta_text',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_pillars',
+                    'label' => '社会责任支柱卡片',
+                    'name' => 'sr_pillars',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => '添加支柱卡片',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_sr_pillar_key',
+                            'label' => '内部标识',
+                            'name' => 'sr_pillar_key',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_sr_pillar_title',
+                            'label' => '标题',
+                            'name' => 'sr_pillar_title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_sr_pillar_description',
+                            'label' => '描述',
+                            'name' => 'sr_pillar_description',
+                            'type' => 'textarea',
+                            'rows' => 3,
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_employees',
+            'title' => '社会责任页面 - 员工责任模块',
+            'fields' => array(
+                array(
+                    'key' => 'field_sr_employees_image',
+                    'label' => '员工责任图片',
+                    'name' => 'sr_employees_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_sr_employees_eyebrow',
+                    'label' => '员工责任小标题',
+                    'name' => 'sr_employees_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_employees_title',
+                    'label' => '员工责任主标题',
+                    'name' => 'sr_employees_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_employees_body',
+                    'label' => '员工责任正文',
+                    'name' => 'sr_employees_body',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_client',
+            'title' => '社会责任页面 - 客户责任模块',
+            'fields' => array(
+                array(
+                    'key' => 'field_sr_client_image',
+                    'label' => '客户责任图片',
+                    'name' => 'sr_client_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_sr_client_eyebrow',
+                    'label' => '客户责任小标题',
+                    'name' => 'sr_client_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_client_title',
+                    'label' => '客户责任主标题',
+                    'name' => 'sr_client_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_client_body',
+                    'label' => '客户责任正文',
+                    'name' => 'sr_client_body',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_environment',
+            'title' => '社会责任页面 - 环境责任模块',
+            'fields' => array(
+                array(
+                    'key' => 'field_sr_environment_image',
+                    'label' => '环境责任图片',
+                    'name' => 'sr_environment_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_sr_environment_eyebrow',
+                    'label' => '环境责任小标题',
+                    'name' => 'sr_environment_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_environment_title',
+                    'label' => '环境责任主标题',
+                    'name' => 'sr_environment_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_environment_body',
+                    'label' => '环境责任正文',
+                    'name' => 'sr_environment_body',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_social_responsibility_vision',
+            'title' => '社会责任页面 - 愿景模块',
+            'fields' => array(
+                array(
+                    'key' => 'field_sr_vision_image',
+                    'label' => '愿景图片',
+                    'name' => 'sr_vision_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'large',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_sr_vision_eyebrow',
+                    'label' => '愿景小标题',
+                    'name' => 'sr_vision_eyebrow',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_vision_title',
+                    'label' => '愿景主标题',
+                    'name' => 'sr_vision_title',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_sr_vision_body',
+                    'label' => '愿景正文',
+                    'name' => 'sr_vision_body',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'page',
+                    ),
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-social-responsibility.php',
+                    ),
+                ),
+            ),
+        )
+    );
+
+    acf_add_local_field_group(
+        array(
+            'key' => 'group_elysia_global_page_references',
+            'title' => 'Global - 关键页面引用',
+            'fields' => array(
+                array(
+                    'key' => 'field_global_page_contact',
+                    'label' => '联系页面',
+                    'name' => 'global_page_contact',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_global_page_factory',
+                    'label' => '工厂页面',
+                    'name' => 'global_page_factory',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_global_page_project',
+                    'label' => '项目案例页面',
+                    'name' => 'global_page_project',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_global_page_quality_manufacturing',
+                    'label' => '质量制造页面',
+                    'name' => 'global_page_quality_manufacturing',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_global_page_social_responsibility',
+                    'label' => '社会责任页面',
+                    'name' => 'global_page_social_responsibility',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+                array(
+                    'key' => 'field_global_page_faq',
+                    'label' => 'FAQ 页面',
+                    'name' => 'global_page_faq',
+                    'type' => 'post_object',
+                    'post_type' => array('page'),
+                    'return_format' => 'id',
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'acf-options',
+                    ),
+                ),
+            ),
+        )
+    );
 }
 
 function elysia_get_blog_detail_latest_posts($limit = 0)
@@ -2919,3 +4210,14 @@ function elysia_single_template_blog_detail($template)
 }
 
 add_filter('single_template', 'elysia_single_template_blog_detail');
+
+// 引入首页 ACF 字段定义
+require_once get_template_directory() . '/inc/acf-front-page.php';
+
+// 允许 SVG 上传
+function elysia_first_web_mime_types($mimes)
+{
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'elysia_first_web_mime_types');

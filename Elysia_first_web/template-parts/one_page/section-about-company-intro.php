@@ -7,47 +7,60 @@ $elysia_about_intro_link_type = '';
 $elysia_about_intro_popup_id = null;
 $elysia_about_intro_cta_url = '';
 $elysia_about_intro_cta_label = '';
+$elysia_about_intro_has_acf = false;
 
 if (function_exists('get_field')) {
     $field_value = get_field('about_intro_badge');
     if ($field_value) {
         $elysia_about_intro_badge = $field_value;
+        $elysia_about_intro_has_acf = true;
     }
 
     $field_value = get_field('about_intro_title');
     if ($field_value) {
         $elysia_about_intro_title = $field_value;
+        $elysia_about_intro_has_acf = true;
     }
 
     $paragraph_rows = get_field('about_intro_paragraphs');
     if (is_array($paragraph_rows) && count($paragraph_rows) > 0) {
         $elysia_about_intro_paragraphs = $paragraph_rows;
+        $elysia_about_intro_has_acf = true;
     }
 
     $image_field = get_field('about_intro_image');
     if (is_array($image_field) && !empty($image_field['url'])) {
         $elysia_about_intro_image = $image_field;
+        $elysia_about_intro_has_acf = true;
     }
 
     $field_value = get_field('about_intro_link_type');
     if ($field_value) {
         $elysia_about_intro_link_type = $field_value;
+        $elysia_about_intro_has_acf = true;
     }
 
     $field_value = get_field('about_intro_popup_id');
     if ($field_value !== null && $field_value !== '') {
         $elysia_about_intro_popup_id = (int) $field_value;
+        $elysia_about_intro_has_acf = true;
     }
 
     $field_value = get_field('about_intro_cta_url');
     if ($field_value) {
         $elysia_about_intro_cta_url = $field_value;
+        $elysia_about_intro_has_acf = true;
     }
 
     $field_value = get_field('about_intro_cta_label');
     if ($field_value) {
         $elysia_about_intro_cta_label = $field_value;
+        $elysia_about_intro_has_acf = true;
     }
+}
+
+if (!$elysia_about_intro_has_acf) {
+    return;
 }
 
 $elysia_about_intro_cta_href = '#';

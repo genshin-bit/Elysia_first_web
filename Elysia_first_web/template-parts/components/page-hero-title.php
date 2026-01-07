@@ -1,51 +1,71 @@
 <?php
 $page_hero_title = '';
+if (isset($args['title']) && $args['title'] !== '') {
+    $page_hero_title = (string) $args['title'];
+}
 $page_hero_subtitle = '';
 $page_hero_bg_url = '';
 
 $is_factory_template = function_exists('is_page_template') && is_page_template('page-factory.php');
+$is_quality_template = function_exists('is_page_template') && is_page_template('page-quality-manufacturing.php');
+$is_about_template = function_exists('is_page_template') && is_page_template('page-about-us.php');
+$is_project_template = function_exists('is_page_template') && is_page_template('page-project.php');
+$is_faq_template = function_exists('is_page_template') && is_page_template('page-faq.php');
+
+$disable_global_hero_options = $is_factory_template || $is_about_template || $is_project_template || $is_faq_template;
+$has_page_hero_acf = false;
 
 if (function_exists('get_field')) {
     if ($is_factory_template) {
         $factory_hero_title = get_field('factory_hero_title');
         if ($factory_hero_title) {
             $page_hero_title = $factory_hero_title;
+            $has_page_hero_acf = true;
         }
 
         $factory_hero_subtitle = get_field('factory_hero_subtitle');
         if ($factory_hero_subtitle) {
             $page_hero_subtitle = $factory_hero_subtitle;
+            $has_page_hero_acf = true;
         }
     } else {
         $hero_title = get_field('hero_title');
-        $hero_title_global = get_field('hero_title', 'option');
-
         if ($hero_title) {
             $page_hero_title = $hero_title;
-        } elseif ($hero_title_global) {
-            $page_hero_title = $hero_title_global;
+            $has_page_hero_acf = true;
+        } elseif (!$is_quality_template && !$disable_global_hero_options) {
+            $hero_title_global = get_field('hero_title', 'option');
+            if ($hero_title_global) {
+                $page_hero_title = $hero_title_global;
+            }
         }
 
         $hero_subtitle = get_field('hero_subtitle');
-        $hero_subtitle_global = get_field('hero_subtitle', 'option');
-
         if ($hero_subtitle) {
             $page_hero_subtitle = $hero_subtitle;
-        } elseif ($hero_subtitle_global) {
-            $page_hero_subtitle = $hero_subtitle_global;
+            $has_page_hero_acf = true;
+        } elseif (!$is_quality_template && !$disable_global_hero_options) {
+            $hero_subtitle_global = get_field('hero_subtitle', 'option');
+            if ($hero_subtitle_global) {
+                $page_hero_subtitle = $hero_subtitle_global;
+            }
         }
     }
 
     $hero_bg = get_field('hero_background_image');
-    $hero_bg_global = get_field('hero_background_image', 'option');
-
-    if (!$hero_bg && $hero_bg_global) {
-        $hero_bg = $hero_bg_global;
-    }
-
     if (is_array($hero_bg) && !empty($hero_bg['url'])) {
         $page_hero_bg_url = $hero_bg['url'];
+        $has_page_hero_acf = true;
+    } elseif (!$is_quality_template && !$disable_global_hero_options) {
+        $hero_bg_global = get_field('hero_background_image', 'option');
+        if (is_array($hero_bg_global) && !empty($hero_bg_global['url'])) {
+            $page_hero_bg_url = $hero_bg_global['url'];
+        }
     }
+}
+
+if ($disable_global_hero_options && !$has_page_hero_acf) {
+    return;
 }
 
 if ($page_hero_title === '' && $is_factory_template && function_exists('get_the_title')) {

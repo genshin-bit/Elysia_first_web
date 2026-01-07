@@ -1,32 +1,69 @@
+<?php
+$elysia_sr_intro_eyebrow = '';
+$elysia_sr_intro_title = '';
+$elysia_sr_intro_body_main = '';
+$elysia_sr_intro_body_sub = '';
+$elysia_sr_intro_cta_text = '';
+$elysia_sr_pillars = array();
+if (function_exists('get_field')) {
+    $elysia_sr_intro_eyebrow = (string) get_field('sr_intro_eyebrow');
+    $elysia_sr_intro_title = (string) get_field('sr_intro_title');
+    $elysia_sr_intro_body_main = (string) get_field('sr_intro_body_main');
+    $elysia_sr_intro_body_sub = (string) get_field('sr_intro_body_sub');
+    $elysia_sr_intro_cta_text = (string) get_field('sr_intro_cta_text');
+    $elysia_sr_pillars_field = get_field('sr_pillars');
+    if (is_array($elysia_sr_pillars_field)) {
+        $elysia_sr_pillars = $elysia_sr_pillars_field;
+    }
+}
+?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-117b1b23 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="117b1b23" data-element_type="section">
     <div class="elementor-container elementor-column-gap-custom">
         <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-412efd38" data-id="412efd38" data-element_type="column">
             <div class="elementor-widget-wrap elementor-element-populated">
                 <div class="elementor-element elementor-element-edb1371 elementor-widget elementor-widget-heading" data-id="edb1371" data-element_type="widget" data-widget_type="heading.default">
                     <div class="elementor-widget-container">
-                        <h5 class="elementor-heading-title elementor-size-default">What we do</h5>
+                        <?php if ($elysia_sr_intro_eyebrow !== '') : ?>
+                            <h5 class="elementor-heading-title elementor-size-default">
+                                <?php echo esc_html($elysia_sr_intro_eyebrow); ?>
+                            </h5>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="elementor-element elementor-element-24fb3a4 elementor-widget elementor-widget-heading" data-id="24fb3a4" data-element_type="widget" data-widget_type="heading.default">
                     <div class="elementor-widget-container">
-                        <h2 class="elementor-heading-title elementor-size-default">We fulfill our social obligations</h2>
+                        <?php if ($elysia_sr_intro_title !== '') : ?>
+                            <h2 class="elementor-heading-title elementor-size-default">
+                                <?php echo esc_html($elysia_sr_intro_title); ?>
+                            </h2>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="elementor-element elementor-element-42bafcb4 elementor-widget elementor-widget-text-editor" data-id="42bafcb4" data-element_type="widget" data-widget_type="text-editor.default">
                     <div class="elementor-widget-container">
-                        <p>As a responsible cold roll forming machine company, Sunway acknowledges the roll forming machine supplier’s role and duty to improve and create sustainable solutions for the community’s most pressing needs related to roll forming machine equipments, employees and environment.</p>
-                        <p>Sunway are committed to empower people and business to own better roll forming machines, we do our best to create shared value and develop a sustainable society for future generations. Such a development path is in line with our values.</p>
+                        <?php
+                        if ($elysia_sr_intro_body_main !== '') {
+                            echo $elysia_sr_intro_body_main;
+                        }
+                        if ($elysia_sr_intro_body_sub !== '') {
+                            echo $elysia_sr_intro_body_sub;
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="elementor-element elementor-element-989b382 elementor-mobile-align-center elementor-align-left elementor-widget elementor-widget-button" data-id="989b382" data-element_type="widget" data-widget_type="button.default">
                     <div class="elementor-widget-container">
-                        <div class="elementor-button-wrapper">
-                            <a class="elementor-button elementor-button-link elementor-size-md" href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjMwNiIsInRvZ2dsZSI6ZmFsc2V9">
-                                <span class="elementor-button-content-wrapper">
-                                    <span class="elementor-button-text">CONTACT US</span>
-                                </span>
-                            </a>
-                        </div>
+                        <?php if ($elysia_sr_intro_cta_text !== '') : ?>
+                            <div class="elementor-button-wrapper">
+                                <a class="elementor-button elementor-button-link elementor-size-md" href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjMwNiIsInRvZ2dsZSI6ZmFsc2V9">
+                                    <span class="elementor-button-content-wrapper">
+                                        <span class="elementor-button-text">
+                                            <?php echo esc_html($elysia_sr_intro_cta_text); ?>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -49,12 +86,30 @@
                                                 </span>
                                             </div>
                                             <div class="elementor-icon-box-content">
-                                                <h4 class="elementor-icon-box-title">
-                                                    <span>
-                                                        Employees’ Happiness </span>
-                                                </h4>
-                                                <p class="elementor-icon-box-description">
-                                                    We provide safe production environment and materials. </p>
+                                                <?php
+                                                $elysia_title = '';
+                                                if (isset($elysia_sr_pillars[0]) && is_array($elysia_sr_pillars[0]) && isset($elysia_sr_pillars[0]['sr_pillar_title'])) {
+                                                    $elysia_title = (string) $elysia_sr_pillars[0]['sr_pillar_title'];
+                                                }
+                                                if ($elysia_title !== '') :
+                                                ?>
+                                                    <h4 class="elementor-icon-box-title">
+                                                        <span>
+                                                            <?php echo esc_html($elysia_title); ?>
+                                                        </span>
+                                                    </h4>
+                                                <?php endif; ?>
+                                                <?php
+                                                $elysia_desc = '';
+                                                if (isset($elysia_sr_pillars[0]) && is_array($elysia_sr_pillars[0]) && isset($elysia_sr_pillars[0]['sr_pillar_description'])) {
+                                                    $elysia_desc = (string) $elysia_sr_pillars[0]['sr_pillar_description'];
+                                                }
+                                                if ($elysia_desc !== '') :
+                                                ?>
+                                                    <p class="elementor-icon-box-description">
+                                                        <?php echo esc_html($elysia_desc); ?>
+                                                    </p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -74,12 +129,30 @@
                                                 </span>
                                             </div>
                                             <div class="elementor-icon-box-content">
-                                                <h4 class="elementor-icon-box-title">
-                                                    <span>
-                                                        Quality Product </span>
-                                                </h4>
-                                                <p class="elementor-icon-box-description">
-                                                    We have always provided society with safe and quality cold roll forming machine. </p>
+                                                <?php
+                                                $elysia_title = '';
+                                                if (isset($elysia_sr_pillars[1]) && is_array($elysia_sr_pillars[1]) && isset($elysia_sr_pillars[1]['sr_pillar_title'])) {
+                                                    $elysia_title = (string) $elysia_sr_pillars[1]['sr_pillar_title'];
+                                                }
+                                                if ($elysia_title !== '') :
+                                                ?>
+                                                    <h4 class="elementor-icon-box-title">
+                                                        <span>
+                                                            <?php echo esc_html($elysia_title); ?>
+                                                        </span>
+                                                    </h4>
+                                                <?php endif; ?>
+                                                <?php
+                                                $elysia_desc = '';
+                                                if (isset($elysia_sr_pillars[1]) && is_array($elysia_sr_pillars[1]) && isset($elysia_sr_pillars[1]['sr_pillar_description'])) {
+                                                    $elysia_desc = (string) $elysia_sr_pillars[1]['sr_pillar_description'];
+                                                }
+                                                if ($elysia_desc !== '') :
+                                                ?>
+                                                    <p class="elementor-icon-box-description">
+                                                        <?php echo esc_html($elysia_desc); ?>
+                                                    </p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -110,12 +183,30 @@
                                                 </span>
                                             </div>
                                             <div class="elementor-icon-box-content">
-                                                <h4 class="elementor-icon-box-title">
-                                                    <span>
-                                                        Eco-Friendly Principle </span>
-                                                </h4>
-                                                <p class="elementor-icon-box-description">
-                                                    We actively reduce the waste generated during the manufacturing process.</p>
+                                                <?php
+                                                $elysia_title = '';
+                                                if (isset($elysia_sr_pillars[2]) && is_array($elysia_sr_pillars[2]) && isset($elysia_sr_pillars[2]['sr_pillar_title'])) {
+                                                    $elysia_title = (string) $elysia_sr_pillars[2]['sr_pillar_title'];
+                                                }
+                                                if ($elysia_title !== '') :
+                                                ?>
+                                                    <h4 class="elementor-icon-box-title">
+                                                        <span>
+                                                            <?php echo esc_html($elysia_title); ?>
+                                                        </span>
+                                                    </h4>
+                                                <?php endif; ?>
+                                                <?php
+                                                $elysia_desc = '';
+                                                if (isset($elysia_sr_pillars[2]) && is_array($elysia_sr_pillars[2]) && isset($elysia_sr_pillars[2]['sr_pillar_description'])) {
+                                                    $elysia_desc = (string) $elysia_sr_pillars[2]['sr_pillar_description'];
+                                                }
+                                                if ($elysia_desc !== '') :
+                                                ?>
+                                                    <p class="elementor-icon-box-description">
+                                                        <?php echo esc_html($elysia_desc); ?>
+                                                    </p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -142,12 +233,30 @@
                                                 </span>
                                             </div>
                                             <div class="elementor-icon-box-content">
-                                                <h4 class="elementor-icon-box-title">
-                                                    <span>
-                                                        Our Vission </span>
-                                                </h4>
-                                                <p class="elementor-icon-box-description">
-                                                    We continue our tradition to contribute to cold roll forming machine and this industry.</p>
+                                                <?php
+                                                $elysia_title = '';
+                                                if (isset($elysia_sr_pillars[3]) && is_array($elysia_sr_pillars[3]) && isset($elysia_sr_pillars[3]['sr_pillar_title'])) {
+                                                    $elysia_title = (string) $elysia_sr_pillars[3]['sr_pillar_title'];
+                                                }
+                                                if ($elysia_title !== '') :
+                                                ?>
+                                                    <h4 class="elementor-icon-box-title">
+                                                        <span>
+                                                            <?php echo esc_html($elysia_title); ?>
+                                                        </span>
+                                                    </h4>
+                                                <?php endif; ?>
+                                                <?php
+                                                $elysia_desc = '';
+                                                if (isset($elysia_sr_pillars[3]) && is_array($elysia_sr_pillars[3]) && isset($elysia_sr_pillars[3]['sr_pillar_description'])) {
+                                                    $elysia_desc = (string) $elysia_sr_pillars[3]['sr_pillar_description'];
+                                                }
+                                                if ($elysia_desc !== '') :
+                                                ?>
+                                                    <p class="elementor-icon-box-description">
+                                                        <?php echo esc_html($elysia_desc); ?>
+                                                    </p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

@@ -11,6 +11,10 @@ if (function_exists('get_field')) {
         }
     }
 }
+
+if ($factory_details_intro_text === '') {
+    return;
+}
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-dfe3648 ct-section-stretched elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="dfe3648" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
     <div class="elementor-background-overlay"></div>

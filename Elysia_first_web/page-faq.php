@@ -102,15 +102,7 @@ get_header();
             <div class="entry-content is-layout-constrained">
                 <div data-elementor-type="wp-page" data-elementor-id="294" class="elementor elementor-294" data-elementor-post-type="page">
                     <div class="elementor elementor-188">
-                        <?php
-                        get_template_part(
-                            'template-parts/components/page-hero-title',
-                            null,
-                            array(
-                                'title' => 'FAQ',
-                            )
-                        );
-                        ?>
+                        <?php get_template_part('template-parts/components/page-hero-title'); ?>
                     </div>
                     <?php
                     get_template_part('template-parts/one_page/faq-intro');

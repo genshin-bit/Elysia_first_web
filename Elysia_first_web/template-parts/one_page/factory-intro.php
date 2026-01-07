@@ -3,21 +3,25 @@ $factory_intro_text = '';
 $factory_intro_image = null;
 $factory_intro_contact_button_text = '';
 $factory_intro_contact_href = '';
+$factory_intro_has_acf = false;
 
 if (function_exists('get_field')) {
     $intro_text_value = get_field('factory_intro_text');
     if ($intro_text_value) {
         $factory_intro_text = $intro_text_value;
+        $factory_intro_has_acf = true;
     }
 
     $intro_image_value = get_field('factory_intro_image');
     if (is_array($intro_image_value) && !empty($intro_image_value['url'])) {
         $factory_intro_image = $intro_image_value;
+        $factory_intro_has_acf = true;
     }
 
     $button_text_value = get_field('factory_intro_contact_button_text');
     if ($button_text_value) {
         $factory_intro_contact_button_text = $button_text_value;
+        $factory_intro_has_acf = true;
     }
 
     $contact_popup_id = get_field('factory_intro_contact_popup_id');
@@ -34,8 +38,13 @@ if (function_exists('get_field')) {
         }
         if ($settings_json) {
             $factory_intro_contact_href = '#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3D' . rawurlencode(base64_encode($settings_json));
+            $factory_intro_has_acf = true;
         }
     }
+}
+
+if (!$factory_intro_has_acf) {
+    return;
 }
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-8ad7d98 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8ad7d98" data-element_type="section">

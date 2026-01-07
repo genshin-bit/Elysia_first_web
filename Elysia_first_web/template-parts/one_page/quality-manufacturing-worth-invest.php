@@ -1,17 +1,50 @@
+<?php
+$elysia_quality_worth_badge = '';
+$elysia_quality_worth_title = '';
+$elysia_quality_worth_cards = array();
+
+if (function_exists('get_field')) {
+    $field_value = get_field('quality_worth_badge');
+    if ($field_value) {
+        $elysia_quality_worth_badge = $field_value;
+    }
+
+    $field_value = get_field('quality_worth_title');
+    if ($field_value) {
+        $elysia_quality_worth_title = $field_value;
+    }
+
+    $rows = get_field('quality_worth_cards');
+    if (is_array($rows) && count($rows) > 0) {
+        $elysia_quality_worth_cards = $rows;
+    }
+}
+
+$elysia_quality_worth_get_card_value = function ($index, $key, $default = '') use ($elysia_quality_worth_cards) {
+    if (isset($elysia_quality_worth_cards[$index]) && isset($elysia_quality_worth_cards[$index][$key]) && $elysia_quality_worth_cards[$index][$key] !== '') {
+        return $elysia_quality_worth_cards[$index][$key];
+    }
+    return $default;
+};
+?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-3225afaa elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3225afaa" data-element_type="section">
     <div class="elementor-container elementor-column-gap-default">
         <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7a363ec3" data-id="7a363ec3" data-element_type="column">
             <div class="elementor-widget-wrap elementor-element-populated">
                 <div class="elementor-element elementor-element-71d603a elementor-widget elementor-widget-heading" data-id="71d603a" data-element_type="widget" data-widget_type="heading.default">
                     <div class="elementor-widget-container">
-                        <h5 class="elementor-heading-title elementor-size-default">WORTHY INVEST</h5>
+                        <h5 class="elementor-heading-title elementor-size-default">
+                            <?php if ($elysia_quality_worth_badge !== '') : ?>
+                                <?php echo esc_html($elysia_quality_worth_badge); ?>
+                            <?php endif; ?>
+                        </h5>
                     </div>
                 </div>
                 <div class="elementor-element elementor-element-cd21634 elementor-widget elementor-widget-heading" data-id="cd21634" data-element_type="widget" data-widget_type="heading.default">
                     <div class="elementor-widget-container">
-                        <h2 class="elementor-heading-title elementor-size-default">The Production Of Sunway
-                            <br>Your Next Worth Ordering
-                        </h2>
+                        <?php if ($elysia_quality_worth_title !== '') : ?>
+                            <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($elysia_quality_worth_title); ?></h2>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -40,12 +73,19 @@
                                 </div>
                                 <div class="elementor-element elementor-element-23a774c9 elementor-widget elementor-widget-heading" data-id="23a774c9" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
-                                        <h3 class="elementor-heading-title elementor-size-default">High Standard</h3>
+                                        <h3 class="elementor-heading-title elementor-size-default">
+                                            <?php echo esc_html($elysia_quality_worth_get_card_value(0, 'title', '')); ?>
+                                        </h3>
                                     </div>
                                 </div>
                                 <div class="elementor-element elementor-element-2cfc9e83 hide-first animated-fast elementor-invisible elementor-widget elementor-widget-text-editor" data-id="2cfc9e83" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="text-editor.default">
                                     <div class="elementor-widget-container">
-                                        <p>Sunway believes that there should be minimum inferior products in the end manufacturing field. Therefore, we have implemented extremely high standards for all our products. Before our products enter the market, we will continue to test and inspect our products.&nbsp;</p>
+                                        <?php
+                                        $card_0_desc = $elysia_quality_worth_get_card_value(0, 'description', '');
+                                        if ($card_0_desc !== '') :
+                                            echo function_exists('wp_kses_post') ? wp_kses_post($card_0_desc) : esc_html($card_0_desc);
+                                        endif;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -74,12 +114,19 @@
                                 </div>
                                 <div class="elementor-element elementor-element-6dfe01d8 elementor-widget elementor-widget-heading" data-id="6dfe01d8" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
-                                        <h3 class="elementor-heading-title elementor-size-default">Ensure Quality</h3>
+                                        <h3 class="elementor-heading-title elementor-size-default">
+                                            <?php echo esc_html($elysia_quality_worth_get_card_value(1, 'title', '')); ?>
+                                        </h3>
                                     </div>
                                 </div>
                                 <div class="elementor-element elementor-element-2f1e8724 hide-first animated-fast elementor-invisible elementor-widget elementor-widget-text-editor" data-id="2f1e8724" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="text-editor.default">
                                     <div class="elementor-widget-container">
-                                        <p>Each product of Sunway involves multiple production links. In order to ensure that the products received by our customers are perfect, we use a strict QC system to thoroughly inspect the products. We strictly control every aspect of the product.</p>
+                                        <?php
+                                        $card_1_desc = $elysia_quality_worth_get_card_value(1, 'description', '');
+                                        if ($card_1_desc !== '') :
+                                            echo function_exists('wp_kses_post') ? wp_kses_post($card_1_desc) : esc_html($card_1_desc);
+                                        endif;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -108,12 +155,19 @@
                                 </div>
                                 <div class="elementor-element elementor-element-3ddf2268 elementor-widget elementor-widget-heading" data-id="3ddf2268" data-element_type="widget" data-widget_type="heading.default">
                                     <div class="elementor-widget-container">
-                                        <h3 class="elementor-heading-title elementor-size-default">World-Class</h3>
+                                        <h3 class="elementor-heading-title elementor-size-default">
+                                            <?php echo esc_html($elysia_quality_worth_get_card_value(2, 'title', '')); ?>
+                                        </h3>
                                     </div>
                                 </div>
                                 <div class="elementor-element elementor-element-1e96eb83 hide-first animated-fast elementor-invisible elementor-widget elementor-widget-text-editor" data-id="1e96eb83" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="text-editor.default">
                                     <div class="elementor-widget-container">
-                                        <p>Our products have passed the international standard quality system certification. We have obtained CE, ISO90000 and other certifications. Sunway is committed to providing one-stop solutions for cold roll forming machine. You can find our footprint throughout the world, especially in photovoltaic field.</p>
+                                        <?php
+                                        $card_2_desc = $elysia_quality_worth_get_card_value(2, 'description', '');
+                                        if ($card_2_desc !== '') :
+                                            echo function_exists('wp_kses_post') ? wp_kses_post($card_2_desc) : esc_html($card_2_desc);
+                                        endif;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -124,4 +178,3 @@
         </div>
     </div>
 </section>
-

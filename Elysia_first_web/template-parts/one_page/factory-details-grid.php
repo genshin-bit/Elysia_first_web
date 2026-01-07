@@ -7,6 +7,10 @@ if (function_exists('get_field')) {
         $factory_details_boxes = $boxes_value;
     }
 }
+
+if (empty($factory_details_boxes)) {
+    return;
+}
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-ab2c0d6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ab2c0d6" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
     <div class="elementor-container elementor-column-gap-default">

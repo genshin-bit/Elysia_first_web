@@ -1,5 +1,7 @@
 <?php
 $elysia_mission_background_settings = '';
+$elysia_mission_has_items = false;
+$elysia_mission_has_background = false;
 
 $elysia_mission_item_1_index = '';
 $elysia_mission_item_1_title = '';
@@ -17,11 +19,11 @@ $elysia_mission_item_3_description = '';
 $elysia_mission_item_3_animation = '';
 
 if (function_exists('get_field')) {
-    $local_items = get_field('about_mission_items');
-    $global_items = get_field('mission_items', 'option');
-    $items = $local_items ? $local_items : $global_items;
+    $items = get_field('about_mission_items');
 
     if (is_array($items) && !empty($items)) {
+        $elysia_mission_has_items = true;
+
         if (isset($items[0])) {
             $item = $items[0];
             if (isset($item['index']) && $item['index'] !== '') {
@@ -71,9 +73,7 @@ if (function_exists('get_field')) {
         }
     }
 
-    $local_slides = get_field('about_mission_background_slides');
-    $global_slides = get_field('mission_background_slides', 'option');
-    $slides = $local_slides ? $local_slides : $global_slides;
+    $slides = get_field('about_mission_background_slides');
 
     if (is_array($slides) && !empty($slides)) {
         $gallery = array();
@@ -88,6 +88,7 @@ if (function_exists('get_field')) {
         }
 
         if (!empty($gallery)) {
+            $elysia_mission_has_background = true;
             $background_array = array(
                 'background_background' => 'slideshow',
                 'background_slideshow_gallery' => $gallery,
@@ -103,6 +104,10 @@ if (function_exists('get_field')) {
             }
         }
     }
+}
+
+if (!$elysia_mission_has_items && !$elysia_mission_has_background) {
+    return;
 }
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-165f95c0 ct-section-stretched elementor-section-height-min-height elementor-section-items-stretch elementor-section-content-bottom elementor-section-boxed elementor-section-height-default" data-id="165f95c0" data-element_type="section" data-settings="<?php echo esc_attr($elysia_mission_background_settings !== '' ? $elysia_mission_background_settings : '{}'); ?>">

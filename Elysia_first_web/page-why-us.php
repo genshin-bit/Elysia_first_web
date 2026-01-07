@@ -56,6 +56,7 @@ get_header();
 <link rel='stylesheet' id='elementor-icons-fa-brands-css' href='<?php echo get_template_directory_uri(); ?>/static/css/brands.min.css' media='all' />
 <link rel='stylesheet' id='widget-icon-box-css' href='<?php echo get_template_directory_uri(); ?>/static/css/widget-icon-box.min.css' media='all' />
 <link rel='stylesheet' id='e-motion-fx-css' href='<?php echo get_template_directory_uri(); ?>/static/css/motion-fx.min.css' media='all' />
+<link rel='stylesheet' id='elementor-post-188-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-188.css' media='all' />
 <link rel='stylesheet' id='elementor-post-268-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-268.css' media='all' />
 <link rel='stylesheet' id='elementor-post-442-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-442.css' media='all' />
 <link rel='stylesheet' id='elementor-post-2636-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-2636.css' media='all' />
@@ -108,8 +109,28 @@ get_header();
             </div>
             <div class="entry-content is-layout-constrained">
                 <div data-elementor-type="wp-page" data-elementor-id="268" class="elementor elementor-268" data-elementor-post-type="page">
+                    <div class="elementor elementor-188">
+                        <?php
+                        $why_us_hero_title = '';
+                        if (function_exists('get_field')) {
+                            $field_value = get_field('why_us_hero_title');
+                            if ($field_value) {
+                                $why_us_hero_title = (string) $field_value;
+                            }
+                        }
+                        if ($why_us_hero_title === '' && function_exists('get_the_title')) {
+                            $why_us_hero_title = get_the_title();
+                        }
+                        get_template_part(
+                            'template-parts/components/page-hero-title',
+                            null,
+                            array(
+                                'title' => $why_us_hero_title,
+                            )
+                        );
+                        ?>
+                    </div>
                     <?php
-                    get_template_part('template-parts/one_page/why-us-hero');
                     get_template_part('template-parts/one_page/why-us-intro');
                     get_template_part('template-parts/one_page/why-us-advantages-grid');
                     ?>

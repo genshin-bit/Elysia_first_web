@@ -19,8 +19,10 @@ get_header();
 
             <div class="entry-content is-layout-constrained">
                 <div data-elementor-type="wp-page" data-elementor-id="461" class="elementor elementor-461" data-elementor-post-type="page">
+                    <div class="elementor elementor-188">
+                        <?php get_template_part('template-parts/components/page-hero-title'); ?>
+                    </div>
                     <?php
-                    get_template_part('template-parts/one_page/social-responsibility-hero');
                     get_template_part('template-parts/one_page/social-responsibility-intro-and-pillars');
                     get_template_part('template-parts/one_page/social-responsibility-employees');
                     get_template_part('template-parts/one_page/social-responsibility-client');

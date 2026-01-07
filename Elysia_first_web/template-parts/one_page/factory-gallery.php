@@ -7,6 +7,10 @@ if (function_exists('get_field')) {
         $factory_gallery_images = $gallery_value;
     }
 }
+
+if (empty($factory_gallery_images)) {
+    return;
+}
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-3f7bc04 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3f7bc04" data-element_type="section">
     <div class="elementor-container elementor-column-gap-default">

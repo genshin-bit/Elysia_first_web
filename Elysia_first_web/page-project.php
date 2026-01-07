@@ -108,9 +108,7 @@ get_header();
                     </div>
                     <?php
                     get_template_part('template-parts/one_page/project-intro');
-                    get_template_part('template-parts/one_page/project-grid-1');
-                    get_template_part('template-parts/one_page/project-grid-2');
-                    get_template_part('template-parts/one_page/project-grid-3');
+                    get_template_part('template-parts/one_page/project-grid');
                     ?>
                 </div>
             </div>

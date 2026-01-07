@@ -6,26 +6,31 @@ $elysia_capabilities_cta_label = '';
 $elysia_capabilities_cta_href = '#';
 $elysia_capabilities_main_image = null;
 $elysia_capabilities_secondary_image = null;
+$elysia_capabilities_has_acf = false;
 
 if (function_exists('get_field')) {
     $field_value = get_field('capabilities_badge');
     if ($field_value) {
         $elysia_capabilities_badge = $field_value;
+        $elysia_capabilities_has_acf = true;
     }
 
     $field_value = get_field('capabilities_title');
     if ($field_value) {
         $elysia_capabilities_title = $field_value;
+        $elysia_capabilities_has_acf = true;
     }
 
     $field_value = get_field('capabilities_description');
     if ($field_value) {
         $elysia_capabilities_description = $field_value;
+        $elysia_capabilities_has_acf = true;
     }
 
     $field_value = get_field('capabilities_cta_label');
     if ($field_value) {
         $elysia_capabilities_cta_label = $field_value;
+        $elysia_capabilities_has_acf = true;
     }
 
     $target_page = get_field('capabilities_cta_target');
@@ -37,18 +42,25 @@ if (function_exists('get_field')) {
         $permalink = get_permalink($target_id);
         if ($permalink) {
             $elysia_capabilities_cta_href = $permalink;
+            $elysia_capabilities_has_acf = true;
         }
     }
 
     $image_field = get_field('capabilities_main_image');
     if (is_array($image_field) && !empty($image_field['url'])) {
         $elysia_capabilities_main_image = $image_field;
+        $elysia_capabilities_has_acf = true;
     }
 
     $image_field = get_field('capabilities_secondary_image');
     if (is_array($image_field) && !empty($image_field['url'])) {
         $elysia_capabilities_secondary_image = $image_field;
+        $elysia_capabilities_has_acf = true;
     }
+}
+
+if (!$elysia_capabilities_has_acf) {
+    return;
 }
 ?>
 <section data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-section elementor-top-section elementor-element elementor-element-37486ef4 ct-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="37486ef4" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">

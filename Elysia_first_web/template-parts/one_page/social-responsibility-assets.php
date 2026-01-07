@@ -46,6 +46,7 @@ $okki_gid     = get_option('elysia_okki_gid', 'UA-238156102-34');
 <link rel='stylesheet' id='elementor-icons-css' href='<?php echo get_template_directory_uri(); ?>/static/css/elementor-icons.min.css' media='all' />
 <link rel='stylesheet' id='elementor-post-5-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-5.css' media='all' />
 <link rel='stylesheet' id='elementor-post-461-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-461.css' media='all' />
+<link rel='stylesheet' id='elementor-post-188-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-188.css' media='all' />
 <link rel='stylesheet' id='elementor-post-442-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-442.css' media='all' />
 <link rel='stylesheet' id='elementor-post-2636-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-2636.css' media='all' />
 <link rel='stylesheet' id='eael-general-css' href='<?php echo get_template_directory_uri(); ?>/static/css/general.min.css' media='all' />
@@ -117,4 +118,3 @@ $okki_gid     = get_option('elysia_okki_gid', 'UA-238156102-34');
         gId: "<?php echo esc_js($okki_gid); ?>"
     });
 </script>
-<script async src="<?php echo get_template_directory_uri(); ?>/static/js/analyze.js"></script>
