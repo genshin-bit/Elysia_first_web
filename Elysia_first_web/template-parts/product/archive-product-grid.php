@@ -19,7 +19,8 @@
                                         $elysia_query->the_post();
                                         $elysia_product_link = get_permalink();
                                         $elysia_product_title = get_the_title();
-                                        $elysia_primary_image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+                                        $elysia_image_id = function_exists('elysia_get_product_card_image_id') ? elysia_get_product_card_image_id(get_the_ID()) : 0;
+                                        $elysia_primary_image_url = $elysia_image_id ? wp_get_attachment_image_url($elysia_image_id, 'medium_large') : '';
                                 ?>
                                         <li class="product type-product elementor-grid-item">
                                             <figure>

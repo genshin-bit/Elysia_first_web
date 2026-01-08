@@ -99,19 +99,51 @@ if (function_exists('acf_add_local_field_group')) {
 				'type' => 'tab',
 			),
 			array(
-				'key' => 'field_home_stats_list',
+				'key' => 'field_stats_title',
+				'label' => '标题',
+				'name' => 'stats_title',
+				'type' => 'text',
+			),
+			array(
+				'key' => 'field_stats_desc',
+				'label' => '描述',
+				'name' => 'stats_desc',
+				'type' => 'textarea',
+				'rows' => 3,
+			),
+			array(
+				'key' => 'field_stats_btn_text',
+				'label' => '按钮文字',
+				'name' => 'stats_btn_text',
+				'type' => 'text',
+			),
+			array(
+				'key' => 'field_stats_btn_url',
+				'label' => '按钮链接',
+				'name' => 'stats_btn_url',
+				'type' => 'url',
+			),
+			array(
+				'key' => 'field_stats_items',
 				'label' => '统计数据列表',
-				'name' => 'home_stats_list',
+				'name' => 'stats_items',
 				'type' => 'repeater',
 				'sub_fields' => array(
 					array(
-						'key' => 'field_home_stats_number',
+						'key' => 'field_stats_item_icon',
+						'label' => '图标',
+						'name' => 'icon',
+						'type' => 'image',
+						'return_format' => 'id',
+					),
+					array(
+						'key' => 'field_stats_item_number',
 						'label' => '数值',
 						'name' => 'number',
 						'type' => 'text',
 					),
 					array(
-						'key' => 'field_home_stats_label',
+						'key' => 'field_stats_item_label',
 						'label' => '标签/说明',
 						'name' => 'label',
 						'type' => 'text',
@@ -145,6 +177,13 @@ if (function_exists('acf_add_local_field_group')) {
 				'type' => 'repeater',
 				'sub_fields' => array(
 					array(
+						'key' => 'field_about_intro_feature_icon',
+						'label' => '特性图标',
+						'name' => 'icon',
+						'type' => 'image',
+						'return_format' => 'id',
+					),
+					array(
 						'key' => 'field_about_intro_feature_text',
 						'label' => '特性文本',
 						'name' => 'text',
@@ -158,6 +197,13 @@ if (function_exists('acf_add_local_field_group')) {
 				'name' => 'about_intro_stats',
 				'type' => 'repeater',
 				'sub_fields' => array(
+					array(
+						'key' => 'field_about_intro_stat_icon',
+						'label' => '统计图标',
+						'name' => 'icon',
+						'type' => 'image',
+						'return_format' => 'id',
+					),
 					array(
 						'key' => 'field_about_intro_stat_number',
 						'label' => '数值',
@@ -198,12 +244,47 @@ if (function_exists('acf_add_local_field_group')) {
 				'type' => 'text',
 			),
 			array(
-				'key' => 'field_category_grid_product_ids',
-				'label' => '选择产品',
-				'name' => 'category_grid_product_ids',
-				'type' => 'relationship',
-				'post_type' => array('product', 'site_product'), // Support Woo and Custom
-				'return_format' => 'id',
+				'key' => 'field_category_grid_items',
+				'label' => '分类卡片列表',
+				'name' => 'category_grid_items',
+				'type' => 'repeater',
+				'sub_fields' => array(
+					array(
+						'key' => 'field_category_grid_item_image',
+						'label' => '顶部图片',
+						'name' => 'image',
+						'type' => 'image',
+						'return_format' => 'id',
+					),
+					array(
+						'key' => 'field_category_grid_item_icon',
+						'label' => '图标/SVG',
+						'name' => 'icon',
+						'type' => 'image',
+						'return_format' => 'id',
+					),
+					array(
+						'key' => 'field_category_grid_item_title',
+						'label' => '标题',
+						'name' => 'title',
+						'type' => 'text',
+					),
+					array(
+						'key' => 'field_category_grid_item_description',
+						'label' => '描述',
+						'name' => 'description',
+						'type' => 'textarea',
+					),
+					array(
+						'key' => 'field_category_grid_item_category',
+						'label' => '绑定产品分类',
+						'name' => 'category',
+						'type' => 'taxonomy',
+						'taxonomy' => 'product_category',
+						'field_type' => 'select',
+						'return_format' => 'id',
+					),
+				),
 			),
 
 			// Tab: Industry Grid
@@ -247,6 +328,32 @@ if (function_exists('acf_add_local_field_group')) {
 				'type' => 'tab',
 			),
 			array(
+				'key' => 'field_feature_media_title',
+				'label' => '标题',
+				'name' => 'feature_media_title',
+				'type' => 'text',
+				'default_value' => 'Why You Choose Us',
+			),
+			array(
+				'key' => 'field_feature_media_description',
+				'label' => '描述',
+				'name' => 'feature_media_description',
+				'type' => 'textarea',
+			),
+			array(
+				'key' => 'field_feature_media_button_text',
+				'label' => '按钮文字',
+				'name' => 'feature_media_button_text',
+				'type' => 'text',
+				'default_value' => 'EXPLORE MORE',
+			),
+			array(
+				'key' => 'field_feature_media_button_link',
+				'label' => '按钮链接',
+				'name' => 'feature_media_button_link',
+				'type' => 'url',
+			),
+			array(
 				'key' => 'field_feature_media_image',
 				'label' => '封面图片',
 				'name' => 'feature_media_image',
@@ -271,12 +378,6 @@ if (function_exists('acf_add_local_field_group')) {
 						'name' => 'icon',
 						'type' => 'image', // Can handle SVG if mime allowed
 						'return_format' => 'id',
-					),
-					array(
-						'key' => 'field_feature_media_item_title',
-						'label' => '标题',
-						'name' => 'title',
-						'type' => 'text',
 					),
 					array(
 						'key' => 'field_feature_media_item_desc',

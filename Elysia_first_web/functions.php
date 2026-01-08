@@ -2652,6 +2652,27 @@ if (function_exists('acf_add_local_field_group')) {
         )
     );
 
+    function elysia_get_product_card_image_id($post_id)
+    {
+        $post_id = (int) $post_id;
+        if (!$post_id) {
+            return 0;
+        }
+        $image_id = 0;
+        if (function_exists('get_field')) {
+            $gallery = get_field('elysia_product_gallery', $post_id);
+            if (is_array($gallery) && !empty($gallery)) {
+                $first = reset($gallery);
+                if (is_array($first) && isset($first['ID'])) {
+                    $image_id = (int) $first['ID'];
+                } elseif ($first) {
+                    $image_id = (int) $first;
+                }
+            }
+        }
+        return $image_id;
+    }
+
     /**
      * 获取使用“产品详情”模板的页面查询，用于产品列表页统一读取产品数据。
      *

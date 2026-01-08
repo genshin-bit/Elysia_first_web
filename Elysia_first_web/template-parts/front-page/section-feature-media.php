@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying the Feature Media section on the front page
  */
@@ -6,8 +7,8 @@
 // Retrieve ACF fields
 $title = get_field('feature_media_title') ?: 'Why You Choose Us';
 $description = get_field('feature_media_description');
-$features = get_field('feature_media_features');
-$button_text = get_field('feature_media_button_text') ?: 'explore more';
+$features = get_field('feature_media_list');
+$button_text = get_field('feature_media_button_text') ?: 'EXPLORE MORE';
 $button_link = get_field('feature_media_button_link');
 $image_id = get_field('feature_media_image');
 $video_url = get_field('feature_media_video_url');
@@ -81,75 +82,90 @@ if ($video_url) {
                     </div>
                 </div>
 
-                <!-- Features List 1 -->
                 <div class="elementor-element elementor-element-5a60440 elementor-widget__width-auto elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
                     data-id="5a60440" data-element_type="widget"
                     data-widget_type="icon-list.default">
                     <div class="elementor-widget-container">
                         <ul class="elementor-icon-list-items">
                             <?php if ($features_1): foreach ($features_1 as $item): 
-                                $icon_id = $item['icon'];
+                                $icon_id = isset($item['icon']) ? $item['icon'] : 0;
                             ?>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-icon">
-                                        <?php 
-                                        if ($icon_id) {
-                                            $file_path = get_attached_file($icon_id);
-                                            $ext = pathinfo($file_path, PATHINFO_EXTENSION);
-                                            if (strtolower($ext) === 'svg') {
-                                                echo file_get_contents($file_path);
-                                            } else {
-                                                echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
+                                    <li class="elementor-icon-list-item">
+                                        <span class="elementor-icon-list-icon">
+                                            <?php
+                                            if ($icon_id) {
+                                                $file_path = get_attached_file($icon_id);
+                                                $ext = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                if (strtolower($ext) === 'svg') {
+                                                    echo file_get_contents($file_path);
+                                                } else {
+                                                    echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </span>
-                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['text']); ?></span>
-                                </li>
-                            <?php endforeach; endif; ?>
+                                            ?>
+                                        </span>
+                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
+                                    </li>
+                            <?php endforeach;
+                            endif; ?>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Features List 2 -->
                 <div class="elementor-element elementor-element-1b045b2 elementor-widget__width-auto elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
                     data-id="1b045b2" data-element_type="widget"
                     data-widget_type="icon-list.default">
                     <div class="elementor-widget-container">
                         <ul class="elementor-icon-list-items">
                             <?php if ($features_2): foreach ($features_2 as $item): 
-                                $icon_id = $item['icon'];
+                                $icon_id = isset($item['icon']) ? $item['icon'] : 0;
                             ?>
-                                <li class="elementor-icon-list-item">
-                                    <span class="elementor-icon-list-icon">
-                                        <?php 
-                                        if ($icon_id) {
-                                            $file_path = get_attached_file($icon_id);
-                                            $ext = pathinfo($file_path, PATHINFO_EXTENSION);
-                                            if (strtolower($ext) === 'svg') {
-                                                echo file_get_contents($file_path);
-                                            } else {
-                                                echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
+                                    <li class="elementor-icon-list-item">
+                                        <span class="elementor-icon-list-icon">
+                                            <?php
+                                            if ($icon_id) {
+                                                $file_path = get_attached_file($icon_id);
+                                                $ext = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                if (strtolower($ext) === 'svg') {
+                                                    echo file_get_contents($file_path);
+                                                } else {
+                                                    echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </span>
-                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['text']); ?></span>
-                                </li>
-                            <?php endforeach; endif; ?>
+                                            ?>
+                                        </span>
+                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
+                                    </li>
+                            <?php endforeach;
+                            endif; ?>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Button -->
                 <div class="elementor-element elementor-element-2599126 elementor-align-left elementor-widget elementor-widget-button"
                     data-id="2599126" data-element_type="widget"
                     data-widget_type="button.default">
                     <div class="elementor-widget-container">
                         <div class="elementor-button-wrapper">
+                            <?php
+                            $button_href = '#';
+                            $button_target = '';
+                            if ($button_link) {
+                                if (is_array($button_link)) {
+                                    if (!empty($button_link['url'])) {
+                                        $button_href = $button_link['url'];
+                                    }
+                                    if (!empty($button_link['target'])) {
+                                        $button_target = $button_link['target'];
+                                    }
+                                } else {
+                                    $button_href = $button_link;
+                                }
+                            }
+                            ?>
                             <a class="elementor-button elementor-button-link elementor-size-md"
-                                href="<?php echo esc_url($button_link['url'] ?? '#'); ?>"
-                                <?php if (!empty($button_link['target'])) echo 'target="' . esc_attr($button_link['target']) . '"'; ?>>
+                                href="<?php echo esc_url($button_href); ?>"
+                                <?php if ($button_target) echo 'target="' . esc_attr($button_target) . '"'; ?>>
                                 <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-text"><?php echo esc_html($button_text); ?></span>
                                 </span>

@@ -4,9 +4,44 @@
  * Template part for displaying the Category Grid section on the front page
  */
 
-// Retrieve ACF fields
-$title = get_field('cat_grid_title') ?: 'Product Category We Provide';
-$items = get_field('cat_grid_items');
+$title = get_field('category_grid_title') ?: 'Product Category We Provide';
+$raw_items = get_field('category_grid_items');
+
+$items = [];
+if ($raw_items) {
+	foreach ($raw_items as $row) {
+		$image_id = isset($row['image']) ? (int) $row['image'] : 0;
+		$icon_id = isset($row['icon']) ? (int) $row['icon'] : 0;
+		$item_title = isset($row['title']) ? $row['title'] : '';
+		$description = isset($row['description']) ? $row['description'] : '';
+		$category = isset($row['category']) ? $row['category'] : 0;
+
+		$link = '';
+		if ($category) {
+			$term_id = is_object($category) ? $category->term_id : (int) $category;
+			$term = get_term($term_id, 'product_category');
+			if ($term && !is_wp_error($term)) {
+				$link = get_term_link($term);
+				if (empty($item_title)) {
+					$item_title = $term->name;
+				}
+			}
+		}
+
+		if (!$link || is_wp_error($link)) {
+			$link = '#';
+		}
+
+		$items[] = [
+			'image'       => $image_id,
+			'link'        => $link,
+			'icon'        => $icon_id,
+			'title'       => $item_title,
+			'description' => $description,
+			'button_text' => 'READ MORE',
+		];
+	}
+}
 
 ?>
 

@@ -11,7 +11,7 @@
                     </div>
                     <div class="elementor-element elementor-element-a5168d0 elementor-widget elementor-widget-html" data-id="a5168d0" data-element_type="widget" data-widget_type="html.default">
                         <div class="elementor-widget-container">
-                            <iframe aria-label='Sunway Contact Form' frameborder="0" allow="geolocation;" style="height:500px;width:99%;border:none;" src='https://formscn.zohopublic.com.cn/easyceotech/form/SunwayContactForm/formperma/pzNRX0a0vTLnd9POzzlI5FD2DQm4WX5_ZfrCo5BuWow'></iframe>
+                            <?php get_template_part('template-parts/components/contact-form-zoho'); ?>
                         </div>
                     </div>
                 </div>

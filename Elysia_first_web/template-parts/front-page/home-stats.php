@@ -66,7 +66,7 @@ $stats_items = get_field('stats_items'); // Repeater
                             data-id="<?php echo $section_id; ?>" data-element_type="section">
                             <div class="elementor-container elementor-column-gap-default">
                                 <?php foreach ($chunk as $item_index => $item) { 
-                                    $icon_id = $item['icon'];
+                                    $icon_id = $item['icon'] ?? '';
                                     $number = $item['number'];
                                     $label = $item['label'];
                                     // 简单的 ID 模拟

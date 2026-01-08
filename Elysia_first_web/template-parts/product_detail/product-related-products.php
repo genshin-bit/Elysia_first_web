@@ -44,35 +44,17 @@ if (!empty($related_ids)) :
                                             $related_query->the_post();
                                             $title = get_the_title();
                                             $link = get_permalink();
-                                            $primary_image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
-                                            $secondary_image_url = '';
-                                            if (function_exists('get_field')) {
-                                                $gallery = get_field('elysia_product_gallery', get_the_ID());
-                                                if (is_array($gallery) && !empty($gallery)) {
-                                                    $gallery_item = $gallery[0];
-                                                    if (is_array($gallery_item) && isset($gallery_item['url'])) {
-                                                        $secondary_image_url = $gallery_item['url'];
-                                                    } elseif ($gallery_item) {
-                                                        $secondary_image_url = wp_get_attachment_image_url($gallery_item, 'medium_large');
-                                                    }
-                                                }
-                                            }
-                                            if (!$secondary_image_url) {
-                                                $secondary_image_url = $primary_image_url;
-                                            }
+                                            $image_id = function_exists('elysia_get_product_card_image_id') ? elysia_get_product_card_image_id(get_the_ID()) : 0;
+                                            $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'medium_large') : '';
                                     ?>
                                             <li class="product type-product elementor-grid-item">
                                                 <figure>
                                                     <a class="ct-media-container has-hover-effect"
                                                         href="<?php echo esc_url($link); ?>"
                                                         aria-label="<?php echo esc_attr($title); ?>">
-                                                        <?php if ($primary_image_url) { ?>
+                                                        <?php if ($image_url) { ?>
                                                             <img loading="lazy" width="400" height="400"
-                                                                src="<?php echo esc_url($secondary_image_url); ?>"
-                                                                alt="<?php echo esc_attr($title); ?>"
-                                                                class="ct-swap" style="aspect-ratio: 1/1;" />
-                                                            <img loading="lazy" width="400" height="400"
-                                                                src="<?php echo esc_url($primary_image_url); ?>"
+                                                                src="<?php echo esc_url($image_url); ?>"
                                                                 alt="<?php echo esc_attr($title); ?>"
                                                                 class="wp-post-image" style="aspect-ratio: 1/1;" />
                                                         <?php } ?>

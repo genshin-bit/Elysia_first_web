@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying the About Intro section on the front page
  */
@@ -32,13 +33,43 @@ $button_link = get_field('about_intro_button_link');
                     data-id="484f8f2" data-element_type="widget"
                     data-widget_type="image.default">
                     <div class="elementor-widget-container">
-                        <?php if ($image_id): ?>
-                            <?php echo wp_get_attachment_image($image_id, 'large', false, ['class' => 'attachment-large size-large']); ?>
-                        <?php else: ?>
+                        <?php
+                        $img_url = '';
+                        $img_alt = 'About Image';
+
+                        if ($image_id) {
+                            if (is_array($image_id)) {
+                                // Handle Image Object return format (ACF returning array)
+                                $img_alt = !empty($image_id['alt']) ? $image_id['alt'] : $img_alt;
+                                if (isset($image_id['sizes']['large'])) {
+                                    $img_url = $image_id['sizes']['large'];
+                                } elseif (isset($image_id['url'])) {
+                                    $img_url = $image_id['url'];
+                                }
+                            } else {
+                                // Handle Image ID return format
+                                $image_src = wp_get_attachment_image_src($image_id, 'full');
+                                if ($image_src) {
+                                    $img_url = $image_src[0];
+                                }
+                            }
+                        }
+
+                        if ($img_url) {
+                        ?>
+                            <img src="<?php echo esc_url($img_url); ?>"
+                                class="attachment-large size-large"
+                                alt="<?php echo esc_attr($img_alt); ?>">
+                        <?php
+                        } else {
+                            // Fallback
+                        ?>
                             <img fetchpriority="high" decoding="async" width="1024" height="576"
                                 src="<?php echo get_template_directory_uri(); ?>/static/image/240702111754-1-1024x576.jpg"
                                 class="attachment-large size-large" alt="About Image">
-                        <?php endif; ?>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -106,12 +137,12 @@ $button_link = get_field('about_intro_button_link');
                                     <div class="elementor-widget-container">
                                         <ul class="elementor-icon-list-items">
                                             <?php if ($features): ?>
-                                                <?php foreach ($features as $item): 
+                                                <?php foreach ($features as $item):
                                                     $icon_id = $item['icon'];
                                                 ?>
                                                     <li class="elementor-icon-list-item">
                                                         <span class="elementor-icon-list-icon">
-                                                            <?php 
+                                                            <?php
                                                             if ($icon_id) {
                                                                 $file_path = get_attached_file($icon_id);
                                                                 $ext = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -133,12 +164,12 @@ $button_link = get_field('about_intro_button_link');
 
                                 <!-- Stats Items -->
                                 <?php if ($stats): ?>
-                                    <?php foreach ($stats as $index => $stat): 
-                                        $icon_id = $stat['icon'];
+                                    <?php foreach ($stats as $index => $stat):
+                                        $icon_id = $stat['icon'] ?? '';
                                         // Use original IDs if possible to maintain exact styling if IDs were targeted, 
                                         // but Elementor usually targets classes.
                                         // We will reuse the original widget structure.
-                                        $widget_id = ($index === 0) ? '38154e5' : 'ce8fd35'; 
+                                        $widget_id = ($index === 0) ? '38154e5' : 'ce8fd35';
                                     ?>
                                         <div class="elementor-element elementor-element-<?php echo $widget_id; ?> elementor-position-left elementor-view-default elementor-mobile-position-top elementor-widget elementor-widget-icon-box"
                                             data-id="<?php echo $widget_id; ?>" data-element_type="widget"
@@ -147,7 +178,7 @@ $button_link = get_field('about_intro_button_link');
                                                 <div class="elementor-icon-box-wrapper">
                                                     <div class="elementor-icon-box-icon">
                                                         <span class="elementor-icon">
-                                                            <?php 
+                                                            <?php
                                                             if ($icon_id) {
                                                                 $file_path = get_attached_file($icon_id);
                                                                 $ext = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -187,7 +218,7 @@ $button_link = get_field('about_intro_button_link');
                                         <div class="elementor-icon-box-wrapper">
                                             <div class="elementor-icon-box-icon">
                                                 <span class="elementor-icon">
-                                                    <?php 
+                                                    <?php
                                                     if ($highlight_icon) {
                                                         $file_path = get_attached_file($highlight_icon);
                                                         $ext = pathinfo($file_path, PATHINFO_EXTENSION);

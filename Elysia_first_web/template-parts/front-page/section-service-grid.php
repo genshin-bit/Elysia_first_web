@@ -5,7 +5,8 @@
 
 // Retrieve ACF fields
 $title = get_field('service_grid_title') ?: 'Check Out Our Service';
-$items = get_field('service_grid_items');
+// Field name aligned with ACF group definition (service_items)
+$items = get_field('service_items');
 
 ?>
 

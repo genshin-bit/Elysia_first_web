@@ -48,15 +48,20 @@ if (!is_array($elysia_featured_products)) {
                         }
                         $elysia_product_title = get_the_title($elysia_product_id);
                         $elysia_product_link = get_permalink($elysia_product_id);
-                        $elysia_product_image = get_the_post_thumbnail(
-                            $elysia_product_id,
-                            'medium',
-                            array(
-                                'loading' => 'lazy',
-                                'class' => 'ct-swap',
-                                'style' => 'aspect-ratio: 1/1;',
-                            )
-                        );
+                        $elysia_image_id = function_exists('elysia_get_product_card_image_id') ? elysia_get_product_card_image_id($elysia_product_id) : 0;
+                        $elysia_product_image = '';
+                        if ($elysia_image_id) {
+                            $elysia_product_image = wp_get_attachment_image(
+                                $elysia_image_id,
+                                'medium',
+                                false,
+                                array(
+                                    'loading' => 'lazy',
+                                    'class' => 'ct-swap',
+                                    'style' => 'aspect-ratio: 1/1;',
+                                )
+                            );
+                        }
                 ?>
                         <li <?php post_class('product', $elysia_product_id); ?>>
                             <figure>
