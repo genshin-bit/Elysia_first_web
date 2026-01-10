@@ -838,6 +838,13 @@ if (function_exists('acf_add_local_field_group')) {
                         'value' => 'acf-options',
                     ),
                 ),
+                array(
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'woocommerce/archive-product.php',
+                    ),
+                ),
             ),
         )
     );

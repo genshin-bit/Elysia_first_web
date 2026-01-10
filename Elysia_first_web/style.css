@@ -218,6 +218,39 @@ img {
     display: block;
 }
 
+.h-btn .elementor-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--elysia-secondary-color);
+}
+
+.h-btn .elementor-button:hover,
+.h-btn .elementor-button:focus {
+    background-color: transparent;
+    color: var(--elysia-primary-color);
+    text-decoration: none;
+}
+
+.elementor-1206 .elementor-element.elementor-element-5dafbf5 .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.elementor-1206 .elementor-element.elementor-element-5dafbf5 .elementor-wrapper iframe,
+.elementor-1206 .elementor-element.elementor-element-5dafbf5 .elementor-wrapper video,
+.elementor-1206 .elementor-element.elementor-element-5dafbf5 .elementor-wrapper .elementor-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* 两个 CTA 按钮样式（CONTACT US / Download cataloge） */
 .elementor-525 .elementor-element.elementor-element-f90cfd5 .elementor-button {
     background-color: var(--e-global-color-blocksy_palette_1);

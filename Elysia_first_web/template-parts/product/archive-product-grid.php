@@ -3,7 +3,7 @@
     <div class="elementor-container elementor-column-gap-default">
         <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6c73cd7d" data-id="6c73cd7d" data-element_type="column">
             <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-b4d0d9a elementor-product-loop-item--align-center elementor-products-grid elementor-wc-products elementor-widget elementor-widget-wc-archive-products" data-id="b4d0d9a" data-element_type="widget" data-widget_type="wc-archive-products.default">
+                <div class="elementor-element elementor-element-b4d0d9a elementor-product-loop-item--align-center elementor-grid-4 elementor-grid-tablet-3 elementor-grid-mobile-2 elementor-products-grid elementor-wc-products elementor-widget elementor-widget-wc-archive-products" data-id="b4d0d9a" data-element_type="widget" data-widget_type="wc-archive-products.default">
                     <div class="elementor-widget-container">
                         <div class="woocommerce columns-4 ">
                             <div class="woocommerce-notices-wrapper"></div>
