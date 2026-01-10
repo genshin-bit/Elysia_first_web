@@ -49,7 +49,7 @@ get_header();
                     <div class="elementor-container elementor-column-gap-default">
                         <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-3a57f46e"
                             data-id="3a57f46e" data-element_type="column">
-                            <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-widget-wrap elementor-element-populated elysia-article-content">
                                 <div class="elementor-element elementor-element-340a8577 elementor-widget elementor-widget-woocommerce-product-data-tabs"
                                     data-id="340a8577" data-element_type="widget"
                                     data-widget_type="woocommerce-product-data-tabs.default">

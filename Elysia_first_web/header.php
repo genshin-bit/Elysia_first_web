@@ -854,6 +854,7 @@
 	<link rel='stylesheet' id='swiper-css' href='<?php echo get_template_directory_uri(); ?>/static/css/swiper.min.css' media='all' />
 	<link rel='stylesheet' id='e-swiper-css' href='<?php echo get_template_directory_uri(); ?>/static/css/e-swiper.min.css' media='all' />
 	<link rel='stylesheet' id='elementor-post-598-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-598.css' media='all' />
+	<link rel='stylesheet' id='elementor-post-306-css' href='<?php echo get_template_directory_uri(); ?>/static/css/post-306.css' media='all' />
 	<link rel='stylesheet' id='font-awesome-5-all-css' href='<?php echo get_template_directory_uri(); ?>/static/css/all.min.css' media='all' />
 	<link rel='stylesheet' id='font-awesome-4-shim-css' href='<?php echo get_template_directory_uri(); ?>/static/css/v4-shims.min.css' media='all' />
 	<link rel='stylesheet' id='elementor-gf-local-roboto-css' href='<?php echo get_template_directory_uri(); ?>/static/css/roboto.css' media='all' />
@@ -875,6 +876,19 @@
 				width: 33.33%;
 				max-width: 33.33%;
 			}
+		}
+	</style>
+	<style id="elysia-toc-flat-numbering">
+		.elementor-widget-table-of-contents .elementor-toc__list-item-text-wrapper:before {
+			content: counter(item) ". ";
+		}
+
+		.elementor-widget-table-of-contents ol.elementor-toc__list-wrapper ol.elementor-toc__list-wrapper {
+			counter-reset: none;
+		}
+
+		.elementor-widget-table-of-contents .elementor-toc__list-item .elementor-toc__list-wrapper {
+			margin-inline-start: 0;
 		}
 	</style>
 	<script src="<?php echo get_template_directory_uri(); ?>/static/js/jquery.min.js" id="jquery-core-js"></script>
