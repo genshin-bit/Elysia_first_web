@@ -5,17 +5,53 @@
  * ACF Fields: field_tab_hero
  */
 
-// 获取 ACF 字段
-$bg_type = get_field('hero_bg_type') ?: 'video';
-$video_url = get_field('hero_video');
-$image_id = get_field('hero_image');
+// 获取 ACF 字段（优先使用首页 Hero 首屏区域字段）
+$bg_type = get_field('home_hero_bg_type');
+if (!$bg_type) {
+	$bg_type = get_field('hero_bg_type') ?: 'video';
+}
+
+$video_url = get_field('home_hero_video_url');
+if (!$video_url) {
+	$video_url = get_field('hero_video');
+}
+
+$image_id = get_field('home_hero_bg_image');
+if (!$image_id) {
+	$image_id = get_field('hero_image');
+}
+
 $subtitle = get_field('hero_subtitle') ?: 'LEaD BY PASSIONATE Technicians';
-$title = get_field('hero_title') ?: 'The leading of<br> roll forming machine industry';
-$desc = get_field('hero_desc') ?: 'WUXI SUNWAY MACHINERY CO.,LTD is a professional manufacturer...';
-$btn1_text = get_field('hero_btn1_text') ?: 'Explore Product';
-$btn1_url = get_field('hero_btn1_url') ?: '#';
-$btn2_text = get_field('hero_btn2_text') ?: 'ABOUT US';
-$btn2_url = get_field('hero_btn2_url') ?: '#';
+
+$title = get_field('home_hero_title');
+if (!$title) {
+	$title = get_field('hero_title') ?: 'The leading of<br> roll forming machine industry';
+}
+
+$desc = get_field('home_hero_description');
+if (!$desc) {
+	$desc = get_field('hero_desc') ?: 'WUXI SUNWAY MACHINERY CO.,LTD is a professional manufacturer...';
+}
+
+$btn1_text = get_field('home_hero_primary_btn_text');
+if (!$btn1_text) {
+	$btn1_text = get_field('hero_btn1_text') ?: 'Explore Product';
+}
+
+$btn1_url = get_field('home_hero_primary_btn_url');
+if (!$btn1_url) {
+	$btn1_url = get_field('hero_btn1_url') ?: '#';
+}
+
+$btn2_text = get_field('home_hero_secondary_btn_text');
+if (!$btn2_text) {
+	$btn2_text = get_field('hero_btn2_text') ?: 'ABOUT US';
+}
+
+$btn2_url = get_field('home_hero_secondary_btn_url');
+if (!$btn2_url) {
+	$btn2_url = get_field('hero_btn2_url') ?: '#';
+}
 
 // 构建 Section 的 data-settings
 $section_settings = [
