@@ -40,11 +40,9 @@ if ($elysia_detail_post_id > 0) {
         siteId: "39166-9223",
         gId: "UA-238156102-34"
     });
+
     document.addEventListener('DOMContentLoaded', function() {
         var links = document.querySelectorAll('.elementor-toc__list-wrapper a[href^="#"]');
-        if (!links.length) {
-            return;
-        }
         links.forEach(function(link) {
             link.addEventListener('click', function(e) {
                 var targetId = this.getAttribute('href').slice(1);
@@ -61,6 +59,113 @@ if ($elysia_detail_post_id > 0) {
                 });
             });
         });
+
+        function elysiaRebuildBlogToc(retry) {
+            if (retry > 10) {
+                return;
+            }
+
+            var article = document.querySelector('.elysia-article-content');
+            var tocBody = document.querySelector('.elementor-1361 .elementor-toc__body');
+
+            if (!article || !tocBody) {
+                setTimeout(function() {
+                    elysiaRebuildBlogToc(retry + 1);
+                }, 300);
+                return;
+            }
+
+            var headings = article.querySelectorAll('h2, h3');
+            if (!headings.length) {
+                return;
+            }
+
+            var listWrapper = tocBody.querySelector('ol.elementor-toc__list-wrapper');
+            if (!listWrapper) {
+                listWrapper = document.createElement('ol');
+                listWrapper.className = 'elementor-toc__list-wrapper';
+                tocBody.innerHTML = '';
+                tocBody.appendChild(listWrapper);
+            } else {
+                listWrapper.innerHTML = '';
+            }
+
+            var currentParentLi = null;
+
+            headings.forEach(function(heading, index) {
+                var tag = heading.tagName;
+                if (tag !== 'H2' && tag !== 'H3') {
+                    return;
+                }
+
+                if (!heading.id) {
+                    heading.id = 'elysia-heading-' + (index + 1);
+                }
+
+                if (tag === 'H2') {
+                    var li = document.createElement('li');
+                    li.className = 'elementor-toc__list-item';
+
+                    var a = document.createElement('a');
+                    a.className = 'elementor-toc__list-item-text-wrapper';
+                    a.href = '#' + heading.id;
+
+                    var span = document.createElement('span');
+                    span.className = 'elementor-toc__list-item-text';
+                    span.textContent = heading.textContent.trim();
+
+                    a.appendChild(span);
+                    li.appendChild(a);
+                    listWrapper.appendChild(li);
+                    currentParentLi = li;
+                } else { // H3
+                    if (!currentParentLi) {
+                        var liTop = document.createElement('li');
+                        liTop.className = 'elementor-toc__list-item';
+
+                        var aTop = document.createElement('a');
+                        aTop.className = 'elementor-toc__list-item-text-wrapper';
+                        aTop.href = '#' + heading.id;
+
+                        var spanTop = document.createElement('span');
+                        spanTop.className = 'elementor-toc__list-item-text';
+                        spanTop.textContent = heading.textContent.trim();
+
+                        aTop.appendChild(spanTop);
+                        liTop.appendChild(aTop);
+                        listWrapper.appendChild(liTop);
+                        currentParentLi = liTop;
+                        return;
+                    }
+
+                    var subOl = currentParentLi.querySelector('ol.elementor-toc__list-wrapper');
+                    if (!subOl) {
+                        subOl = document.createElement('ol');
+                        subOl.className = 'elementor-toc__list-wrapper';
+                        currentParentLi.appendChild(subOl);
+                    }
+
+                    var subLi = document.createElement('li');
+                    subLi.className = 'elementor-toc__list-item';
+
+                    var subA = document.createElement('a');
+                    subA.className = 'elementor-toc__list-item-text-wrapper';
+                    subA.href = '#' + heading.id;
+
+                    var subSpan = document.createElement('span');
+                    subSpan.className = 'elementor-toc__list-item-text';
+                    subSpan.textContent = heading.textContent.trim();
+
+                    subA.appendChild(subSpan);
+                    subLi.appendChild(subA);
+                    subOl.appendChild(subLi);
+                }
+            });
+        }
+
+        setTimeout(function() {
+            elysiaRebuildBlogToc(0);
+        }, 500);
     });
 </script>
 <script async src="<?php echo get_template_directory_uri(); ?>/static/js/analyze.js"></script>

@@ -12,9 +12,9 @@ if (!$inquiry_section_title) {
 <div class="elementor-element elementor-element-3473dc6a elementor-widget elementor-widget-heading"
     data-id="3473dc6a" data-element_type="widget" data-widget_type="heading.default">
     <div class="elementor-widget-container">
-        <h3 class="elementor-heading-title elementor-size-default">
+        <h2 class="elementor-heading-title elementor-size-default">
             <?php echo esc_html($inquiry_section_title); ?>
-        </h3>
+        </h2>
     </div>
 </div>
 <div class="elementor-element elementor-widget elementor-widget-text-editor">

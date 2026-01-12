@@ -880,15 +880,7 @@
 	</style>
 	<style id="elysia-toc-flat-numbering">
 		.elementor-widget-table-of-contents .elementor-toc__list-item-text-wrapper:before {
-			content: counter(item) ". ";
-		}
-
-		.elementor-widget-table-of-contents ol.elementor-toc__list-wrapper ol.elementor-toc__list-wrapper {
-			counter-reset: none;
-		}
-
-		.elementor-widget-table-of-contents .elementor-toc__list-item .elementor-toc__list-wrapper {
-			margin-inline-start: 0;
+			content: counters(item, ".") ". ";
 		}
 	</style>
 	<script src="<?php echo get_template_directory_uri(); ?>/static/js/jquery.min.js" id="jquery-core-js"></script>

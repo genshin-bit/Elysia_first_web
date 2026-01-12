@@ -14,9 +14,9 @@ if (function_exists('have_rows') && have_rows('faq_items')) :
     <div class="elementor-element elementor-element-76057593 elementor-widget elementor-widget-heading"
         data-id="76057593" data-element_type="widget" data-widget_type="heading.default">
         <div class="elementor-widget-container">
-            <h3 class="elementor-heading-title elementor-size-default">
+            <h2 class="elementor-heading-title elementor-size-default">
                 <?php echo esc_html($faq_title); ?>
-            </h3>
+            </h2>
         </div>
     </div>
     <div class="elementor-element elementor-element-15560985 elementor-widget elementor-widget-eael-adv-accordion"
