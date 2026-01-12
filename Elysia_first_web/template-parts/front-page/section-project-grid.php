@@ -17,6 +17,17 @@ if (!$items) {
 	];
 }
 ?>
+<style id="elysia-front-project-location-style">
+	.elementor-4217 .elysia-project-location {
+		color: #A32212;
+		border-left: 4px solid #A32212;
+		padding-left: 10px;
+	}
+
+	.elementor-4217 .elementor-element.elementor-element-147af16 .elementor-heading-title {
+		font-size: 25px;
+	}
+</style>
 <section data-particle_enable="false" data-particle-mobile-disabled="false"
 	class="elementor-section elementor-top-section elementor-element elementor-element-8a2279e ct-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default"
 	data-id="8a2279e" data-element_type="section"
@@ -162,7 +173,7 @@ if (!$items) {
 											data-id="<?php echo esc_attr($col_id); ?>_loc" data-element_type="widget"
 											data-widget_type="text-editor.default">
 											<div class="elementor-widget-container">
-												<p><?php echo esc_html($location); ?></p>
+												<p class="elysia-project-location"><?php echo esc_html($location); ?></p>
 											</div>
 										</div>
 										<div class="elementor-element elementor-element-<?php echo esc_attr($col_id); ?>_title elementor-widget elementor-widget-heading"
