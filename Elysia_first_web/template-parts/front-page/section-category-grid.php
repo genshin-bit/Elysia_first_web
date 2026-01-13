@@ -81,7 +81,7 @@ if ($raw_items) {
 		$section_id = ($chunk_index === 0) ? '454207d' : (($chunk_index === 1) ? '400003d' : 'cat_row_' . $chunk_index);
 ?>
 		<section data-particle_enable="false" data-particle-mobile-disabled="false"
-			class="elementor-section elementor-top-section elementor-element elementor-element-<?php echo esc_attr($section_id); ?> elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+			class="elementor-section elementor-top-section elementor-element elementor-element-<?php echo esc_attr($section_id); ?> elementor-4217 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
 			data-id="<?php echo esc_attr($section_id); ?>" data-element_type="section">
 			<div class="elementor-container elementor-column-gap-custom">
 				<?php foreach ($chunk as $item_index => $item):
@@ -123,7 +123,7 @@ if ($raw_items) {
 										data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 										<div class="elementor-widget-wrap elementor-element-populated">
 											<!-- Icon Box -->
-											<div class="elementor-element elementor-element-<?php echo esc_attr($col_id); ?>_iconbox elementor-view-default elementor-position-top elementor-mobile-position-top elementor-widget elementor-widget-icon-box"
+											<div class="elementor-element elementor-element-<?php echo esc_attr($col_id); ?>_iconbox elementor-element-8612241 elementor-view-default elementor-position-top elementor-mobile-position-top elementor-widget elementor-widget-icon-box"
 												data-id="<?php echo esc_attr($col_id); ?>_iconbox" data-element_type="widget"
 												data-widget_type="icon-box.default">
 												<div class="elementor-widget-container">

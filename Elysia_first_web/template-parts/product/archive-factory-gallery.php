@@ -58,7 +58,7 @@
                                             }
                                         }
                                         if ($elysia_image_id || $elysia_image_url) {
-                                            ?>
+                                ?>
                                             <figure class='gallery-item'>
                                                 <div class='gallery-icon landscape'>
                                                     <a data-elementor-open-lightbox="no" href='<?php echo esc_url($elysia_image_url); ?>'>
@@ -66,15 +66,15 @@
                                                         if ($elysia_image_id) {
                                                             echo wp_get_attachment_image($elysia_image_id, 'medium_large', false, array('class' => 'attachment-medium_large size-medium_large'));
                                                         } elseif ($elysia_image_url) {
-                                                            ?>
+                                                        ?>
                                                             <img loading="lazy" class="attachment-medium_large size-medium_large" src="<?php echo esc_url($elysia_image_url); ?>" alt="" />
-                                                            <?php
+                                                        <?php
                                                         }
                                                         ?>
                                                     </a>
                                                 </div>
                                             </figure>
-                                            <?php
+                                    <?php
                                         }
                                     }
                                 } else {
@@ -100,7 +100,7 @@
                                             </a>
                                         </div>
                                     </figure>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </div>

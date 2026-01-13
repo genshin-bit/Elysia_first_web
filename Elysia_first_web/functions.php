@@ -1114,6 +1114,13 @@ if (function_exists('acf_add_local_field_group')) {
                     'type' => 'textarea',
                     'rows' => 3,
                 ),
+                array(
+                    'key' => 'field_global_company_intro',
+                    'label' => '公司简介',
+                    'name' => 'global_company_intro',
+                    'type' => 'textarea',
+                    'rows' => 4,
+                ),
             ),
             'location' => array(
                 array(
@@ -3249,6 +3256,34 @@ if (function_exists('acf_add_local_field_group')) {
             'title' => 'Blog Detail Global Options',
             'fields' => array(
                 array(
+                    'key' => 'field_blog_detail_toc_title',
+                    'label' => '目录标题',
+                    'name' => 'blog_detail_toc_title',
+                    'type' => 'text',
+                    'default_value' => 'Table of Contents',
+                ),
+                array(
+                    'key' => 'field_blog_detail_toc_no_headings_message',
+                    'label' => '无目录提示文案',
+                    'name' => 'blog_detail_toc_no_headings_message',
+                    'type' => 'text',
+                    'default_value' => 'No headings found on this page.',
+                ),
+                array(
+                    'key' => 'field_blog_detail_toc_open_label',
+                    'label' => '目录展开 ARIA 标签',
+                    'name' => 'blog_detail_toc_open_label',
+                    'type' => 'text',
+                    'default_value' => 'Open table of contents',
+                ),
+                array(
+                    'key' => 'field_blog_detail_toc_close_label',
+                    'label' => '目录收起 ARIA 标签',
+                    'name' => 'blog_detail_toc_close_label',
+                    'type' => 'text',
+                    'default_value' => 'Close table of contents',
+                ),
+                array(
                     'key' => 'field_blog_detail_sidebar_latest_title',
                     'label' => '侧边最新文章标题',
                     'name' => 'blog_detail_sidebar_latest_title',
@@ -3933,7 +3968,7 @@ function elysia_get_blog_detail_latest_posts($limit = 0)
 
 function elysia_get_blog_detail_contact_texts()
 {
-    $divider = 'Strat Our Business Now';
+    $divider = 'Start Our Business Now';
     $title = 'Get In Touch With Sunway';
     $embed = '';
     if (function_exists('get_field')) {

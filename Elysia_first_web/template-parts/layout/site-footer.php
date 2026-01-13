@@ -109,17 +109,26 @@
 													} ?>
 												</div>
 											</div>
-											<div class="elementor-element elementor-element-2e54ea1 elementor-widget elementor-widget-text-editor"
+											<div class="elementor-element elementor-element-2e54ea1 elementor-widget elementor-widget-text-editor elementor-widget-icon-list elementor-icon-list--layout-traditional"
 												data-id="2e54ea1" data-element_type="widget"
 												data-widget_type="text-editor.default">
 												<?php
-												$footer_company_intro = get_option('elysia_footer_company_intro');
+												$footer_company_intro = '';
+												if (function_exists('get_field')) {
+													$acf_intro = get_field('global_company_intro', 'option');
+													if ($acf_intro) {
+														$footer_company_intro = $acf_intro;
+													}
+												}
+												if (!$footer_company_intro) {
+													$footer_company_intro = get_option('elysia_footer_company_intro');
+												}
 												if (!$footer_company_intro) {
 													$footer_company_intro = get_bloginfo('description');
 												}
 												?>
 												<div class="elementor-widget-container">
-													<p><?php echo esc_html($footer_company_intro); ?></p>
+													<span class="elementor-icon-list-text"><?php echo esc_html($footer_company_intro); ?></span>
 												</div>
 											</div>
 										</div>

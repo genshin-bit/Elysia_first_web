@@ -92,24 +92,14 @@ if ($video_url) {
                     data-widget_type="icon-list.default">
                     <div class="elementor-widget-container">
                         <ul class="elementor-icon-list-items">
-                            <?php if ($features_1): foreach ($features_1 as $item): 
-                                $icon_id = isset($item['icon']) ? $item['icon'] : 0;
-                            ?>
+                            <?php if ($features_1): foreach ($features_1 as $item): ?>
                                     <li class="elementor-icon-list-item">
                                         <span class="elementor-icon-list-icon">
-                                            <?php
-                                            if ($icon_id) {
-                                                $file_path = get_attached_file($icon_id);
-                                                $ext = pathinfo($file_path, PATHINFO_EXTENSION);
-                                                if (strtolower($ext) === 'svg') {
-                                                    echo file_get_contents($file_path);
-                                                } else {
-                                                    echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
-                                                }
-                                            }
-                                            ?>
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 1024 1024" width="200" height="200">
+                                                <path d="M510.44304 940.315042c-237.326197 0-430.396447-193.21249-430.396447-430.695253 0-237.502206 193.07025-430.717765 430.396447-430.717765 237.303684 0 430.40668 193.236026 430.40668 430.717765C940.84972 747.101529 747.791749 940.315042 510.44304 940.315042zM510.44304 124.414591c-212.213239 0-384.861368 172.782182-384.861368 385.182686 0 212.403574 172.647105 385.161197 384.861368 385.161197 212.224496 0 384.870578-172.782182 384.870578-385.161197C895.314641 297.196773 722.667535 124.414591 510.44304 124.414591z"></path>
+                                            </svg>
                                         </span>
-                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
+                                        <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
                                     </li>
                             <?php endforeach;
                             endif; ?>
@@ -122,24 +112,14 @@ if ($video_url) {
                     data-widget_type="icon-list.default">
                     <div class="elementor-widget-container">
                         <ul class="elementor-icon-list-items">
-                            <?php if ($features_2): foreach ($features_2 as $item): 
-                                $icon_id = isset($item['icon']) ? $item['icon'] : 0;
-                            ?>
+                            <?php if ($features_2): foreach ($features_2 as $item): ?>
                                     <li class="elementor-icon-list-item">
                                         <span class="elementor-icon-list-icon">
-                                            <?php
-                                            if ($icon_id) {
-                                                $file_path = get_attached_file($icon_id);
-                                                $ext = pathinfo($file_path, PATHINFO_EXTENSION);
-                                                if (strtolower($ext) === 'svg') {
-                                                    echo file_get_contents($file_path);
-                                                } else {
-                                                    echo wp_get_attachment_image($icon_id, 'full', false, ['class' => 'icon']);
-                                                }
-                                            }
-                                            ?>
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 1024 1024" width="200" height="200">
+                                                <path d="M510.44304 940.315042c-237.326197 0-430.396447-193.21249-430.396447-430.695253 0-237.502206 193.07025-430.717765 430.396447-430.717765 237.303684 0 430.40668 193.236026 430.40668 430.717765C940.84972 747.101529 747.791749 940.315042 510.44304 940.315042zM510.44304 124.414591c-212.213239 0-384.861368 172.782182-384.861368 385.182686 0 212.403574 172.647105 385.161197 384.861368 385.161197 212.224496 0 384.870578-172.782182 384.870578-385.161197C895.314641 297.196773 722.667535 124.414591 510.44304 124.414591z"></path>
+                                            </svg>
                                         </span>
-                                    <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
+                                        <span class="elementor-icon-list-text"><?php echo esc_html($item['description'] ?? ''); ?></span>
                                     </li>
                             <?php endforeach;
                             endif; ?>

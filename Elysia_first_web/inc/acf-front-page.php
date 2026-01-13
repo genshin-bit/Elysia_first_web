@@ -177,13 +177,6 @@ if (function_exists('acf_add_local_field_group')) {
 				'type' => 'repeater',
 				'sub_fields' => array(
 					array(
-						'key' => 'field_about_intro_feature_icon',
-						'label' => '特性图标',
-						'name' => 'icon',
-						'type' => 'image',
-						'return_format' => 'id',
-					),
-					array(
 						'key' => 'field_about_intro_feature_text',
 						'label' => '特性文本',
 						'name' => 'text',
@@ -372,13 +365,6 @@ if (function_exists('acf_add_local_field_group')) {
 				'name' => 'feature_media_list',
 				'type' => 'repeater',
 				'sub_fields' => array(
-					array(
-						'key' => 'field_feature_media_item_icon',
-						'label' => '图标',
-						'name' => 'icon',
-						'type' => 'image', // Can handle SVG if mime allowed
-						'return_format' => 'id',
-					),
 					array(
 						'key' => 'field_feature_media_item_desc',
 						'label' => '描述',
